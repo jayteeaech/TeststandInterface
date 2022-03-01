@@ -261,7 +261,7 @@ namespace Teststand_v4
 
         private void label15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Written by Joe Howard, 2020\njoethoward@gmail.com");
+            MessageBox.Show("Written by Joe Howard, 2022\njoethoward@gmail.com");
         }
     }
 }

@@ -77,6 +77,24 @@
             this.d_trigTest = new System.Windows.Forms.Button();
             this.d_comTest = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.absPosGoButton = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.absPosX = new System.Windows.Forms.NumericUpDown();
+            this.absPosY = new System.Windows.Forms.NumericUpDown();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.relPosGoButton = new System.Windows.Forms.Button();
+            this.label23 = new System.Windows.Forms.Label();
+            this.relPosX = new System.Windows.Forms.NumericUpDown();
+            this.relPosY = new System.Windows.Forms.NumericUpDown();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.nTrg = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.trgDelay = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.baudBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -87,6 +105,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pHoldBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t2Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t1Box)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).BeginInit();
             this.SuspendLayout();
             // 
             // label16
@@ -95,7 +120,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(163, 18);
             this.label16.TabIndex = 26;
-            this.label16.Text = "Teststand Interface";
+            this.label16.Text = "Stage Control Interface";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label15
@@ -240,6 +265,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 74);
             this.tabControl1.Name = "tabControl1";
@@ -272,7 +298,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(226, 244);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Motion Commands";
+            this.tabPage1.Text = "Sequence";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // imageresolutionBox
@@ -661,6 +687,174 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.trgDelay);
+            this.tabPage3.Controls.Add(this.nTrg);
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(this.checkBox1);
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.label25);
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Controls.Add(this.relPosY);
+            this.tabPage3.Controls.Add(this.absPosY);
+            this.tabPage3.Controls.Add(this.relPosX);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.absPosX);
+            this.tabPage3.Controls.Add(this.relPosGoButton);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Controls.Add(this.absPosGoButton);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(226, 244);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Motion Controls";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // absPosGoButton
+            // 
+            this.absPosGoButton.Location = new System.Drawing.Point(167, 127);
+            this.absPosGoButton.Name = "absPosGoButton";
+            this.absPosGoButton.Size = new System.Drawing.Size(50, 23);
+            this.absPosGoButton.TabIndex = 0;
+            this.absPosGoButton.Text = "GO";
+            this.absPosGoButton.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(0, 114);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(145, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Go to Absolute Position: [mm]";
+            // 
+            // absPosX
+            // 
+            this.absPosX.Location = new System.Drawing.Point(30, 130);
+            this.absPosX.Name = "absPosX";
+            this.absPosX.Size = new System.Drawing.Size(53, 20);
+            this.absPosX.TabIndex = 2;
+            // 
+            // absPosY
+            // 
+            this.absPosY.Location = new System.Drawing.Point(109, 130);
+            this.absPosY.Name = "absPosY";
+            this.absPosY.Size = new System.Drawing.Size(53, 20);
+            this.absPosY.TabIndex = 2;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 132);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "X";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(89, 132);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(14, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "Y";
+            // 
+            // relPosGoButton
+            // 
+            this.relPosGoButton.Location = new System.Drawing.Point(167, 178);
+            this.relPosGoButton.Name = "relPosGoButton";
+            this.relPosGoButton.Size = new System.Drawing.Size(50, 23);
+            this.relPosGoButton.TabIndex = 0;
+            this.relPosGoButton.Text = "GO";
+            this.relPosGoButton.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(0, 165);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(143, 13);
+            this.label23.TabIndex = 1;
+            this.label23.Text = "Go to Relative Position: [mm]";
+            // 
+            // relPosX
+            // 
+            this.relPosX.Location = new System.Drawing.Point(30, 181);
+            this.relPosX.Name = "relPosX";
+            this.relPosX.Size = new System.Drawing.Size(53, 20);
+            this.relPosX.TabIndex = 2;
+            // 
+            // relPosY
+            // 
+            this.relPosY.Location = new System.Drawing.Point(109, 181);
+            this.relPosY.Name = "relPosY";
+            this.relPosY.Size = new System.Drawing.Size(53, 20);
+            this.relPosY.TabIndex = 2;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 183);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(14, 13);
+            this.label24.TabIndex = 3;
+            this.label24.Text = "X";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(89, 183);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(14, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Y";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(87, 42);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(67, 13);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "# of Triggers";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(30, 17);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(146, 17);
+            this.checkBox1.TabIndex = 5;
+            this.checkBox1.Text = "Send Trigger after Motion";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // nTrg
+            // 
+            this.nTrg.Location = new System.Drawing.Point(30, 40);
+            this.nTrg.Name = "nTrg";
+            this.nTrg.Size = new System.Drawing.Size(51, 20);
+            this.nTrg.TabIndex = 6;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(87, 68);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(105, 13);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "ms between Triggers";
+            // 
+            // trgDelay
+            // 
+            this.trgDelay.Location = new System.Drawing.Point(30, 66);
+            this.trgDelay.Name = "trgDelay";
+            this.trgDelay.Size = new System.Drawing.Size(51, 20);
+            this.trgDelay.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -681,12 +875,13 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(559, 395);
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.Text = "Zero-Vis Teststand Interface";
+            this.Text = "Zero-Vis Stage Control Interface";
             ((System.ComponentModel.ISupportInitialize)(this.baudBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -699,6 +894,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pHoldBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t2Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.t1Box)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -754,6 +957,24 @@
         private System.Windows.Forms.Button d_t1Set;
         private System.Windows.Forms.Button d_trigTest;
         private System.Windows.Forms.Button d_comTest;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.NumericUpDown trgDelay;
+        private System.Windows.Forms.NumericUpDown nTrg;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.NumericUpDown relPosY;
+        private System.Windows.Forms.NumericUpDown absPosY;
+        private System.Windows.Forms.NumericUpDown relPosX;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.NumericUpDown absPosX;
+        private System.Windows.Forms.Button relPosGoButton;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button absPosGoButton;
     }
 }
 
