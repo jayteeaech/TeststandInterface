@@ -174,14 +174,14 @@ namespace Teststand_v4
 
         private void b_manualCommandSend_Click(object sender, EventArgs e)
         {
-            msgSend(ManualCommandBox.Text + "\n");
+            msgSend(ManualCommandBox.Text);
             ManualCommandBox.Text = null;
         }
 
         private void msgSend(string msg)
         {
             CommandHistoryBox.AppendText("[ TX ] > " + msg + Environment.NewLine);
-            sPort.Write(msg + "\n");
+            sPort.Write(msg);
         }
 
         private void comDisconnect_Click(object sender, EventArgs e)
@@ -239,7 +239,7 @@ namespace Teststand_v4
 
         private void label15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Written by Joe Howard, 2022\njoethoward@gmail.com");
+            MessageBox.Show("**DEV VERSION**\nWritten by Joe Howard, 2022\njoethoward@gmail.com");
         }
 
         private void b_SendTrgToggle_CheckedChanged(object sender, EventArgs e)
@@ -281,10 +281,25 @@ namespace Teststand_v4
             msgSend("d04"); // stop continuous trigger
         }
 
-        private void GenerateSequence()
-        {
-            int[] xArray = new int[(int)seqResX.Value];
+        //private void GenerateSequence()  // WIP.  Not worth building right now
+        //{
+        //    int[] xArray = new int[(int)seqResX.Value];
             
+        //}
+
+        private void b_homeAxes_Click(object sender, EventArgs e)
+        {
+            msgSend("m01"); // home axes
+        }
+
+        private void b_currentPos_Click(object sender, EventArgs e)
+        {
+            msgSend("d07");
+        }
+
+        private void b_loopStatus_Click(object sender, EventArgs e)
+        {
+            msgSend("d06");
         }
     }
 }
