@@ -7,3 +7,12 @@ C:\Users\Joe\source\repos\Teststand v4\Teststand v4\bin\Debug\TeststandInterface
 C:\Users\Joe\source\repos\Teststand v4\Teststand v4\bin\Debug\TeststandInterface.pdb
 C:\Users\Joe\source\repos\Teststand v4\Teststand v4\obj\Debug\TeststandInterface.exe
 C:\Users\Joe\source\repos\Teststand v4\Teststand v4\obj\Debug\TeststandInterface.pdb
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.exe.config
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.exe
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.pdb
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csprojAssemblyReference.cache
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand_v4.Form1.resources
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand_v4.Properties.Resources.resources
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.GenerateResource.cache
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.exe
+C:\Users\joeth\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.pdb

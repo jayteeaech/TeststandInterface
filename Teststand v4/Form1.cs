@@ -21,7 +21,7 @@ namespace Teststand_v4
         {
             InitializeComponent();
             GetAllPorts();
-            refreshMotionDisplays();
+            //refreshMotionDisplays();
         }
         public void GetAllPorts()
         {
@@ -66,10 +66,10 @@ namespace Teststand_v4
                 b_exportSeq.Enabled = true;
                 b_MotionExecute.Enabled = true;
                 b_AbortMotion.Enabled = true;
-                d_release.Enabled = true;
+                //d_release.Enabled = true;
                 d_t1Set.Enabled = true;
-                d_t2Set.Enabled = true;
-                d_pHoldSet.Enabled = true;
+                //d_t2Set.Enabled = true;
+                //d_pHoldSet.Enabled = true;
                 d_comTest.Enabled = true;
                 d_trigTest.Enabled = true;
 
@@ -157,10 +157,10 @@ namespace Teststand_v4
             b_exportSeq.Enabled = false;
             b_MotionExecute.Enabled = false;
             b_AbortMotion.Enabled = false;
-            d_release.Enabled = false;
+            //d_release.Enabled = false;
             d_t1Set.Enabled = false;
-            d_t2Set.Enabled = false;
-            d_pHoldSet.Enabled = false;
+            //d_t2Set.Enabled = false;
+            //d_pHoldSet.Enabled = false;
             d_comTest.Enabled = false;
             d_trigTest.Enabled = false;
         }
@@ -199,14 +199,14 @@ namespace Teststand_v4
             }
         }
 
-        private void refreshMotionDisplays()
-        {
-            float motion = (float)0.5 * ((float)nimagesBox.Value - 1) * (float)tdecBox.Value;
-            float startpoint = (float)0.5 * (float)startpointBox.Value;
-            float res = (float)0.5 * (float)tdecBox.Value;
-            totalmotionBox.Text = startpoint.ToString() + " + " + motion.ToString();
-            imageresolutionBox.Text = res.ToString();
-        }
+        //private void refreshMotionDisplays()
+        //{
+        //    float motion = (float)0.5 * ((float)nimagesBox.Value - 1) * (float)tdecBox.Value;
+        //    float startpoint = (float)0.5 * (float)startpointBox.Value;
+        //    float res = (float)0.5 * (float)tdecBox.Value;
+        //    totalmotionBox.Text = startpoint.ToString() + " + " + motion.ToString();
+        //    imageresolutionBox.Text = res.ToString();
+        //}
 
         private void b_MotionExecute_Click(object sender, EventArgs e)
         {
@@ -279,6 +279,12 @@ namespace Teststand_v4
         private void b_stopContinuousTrg_Click(object sender, EventArgs e)
         {
             msgSend("d04"); // stop continuous trigger
+        }
+
+        private void GenerateSequence()
+        {
+            int[] xArray = new int[(int)seqResX.Value];
+            
         }
     }
 }
