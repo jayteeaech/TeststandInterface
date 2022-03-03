@@ -150,6 +150,7 @@ void loop() {
         if ((xPulsRemain == 0) && (yPulsRemain == 0)){
           loopstate = 5; // advance to MOVE WAIT
           }
+        tlastpuls = millis(); // pulse ended. update last pulse time
         } // end timing check
       break;
     case 5: // MOVE WAIT
@@ -173,11 +174,13 @@ void loop() {
       break;
     case 6: // TRG SEND
       if ((trgremain > 0) || f_trgContinuous) {
+        tcurrent = millis();
         if ((unsigned long)(tcurrent - tlastpuls) >= trgDelay) {
           trgremain--;
           digitalWrite(xducerTrg,HIGH); // set trg high
           delay(trgHiTm);  // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
           digitalWrite(xducerTrg,LOW); // set trg low
+          tlastpuls = millis(); // pulse ended. update last pulse time
           }
         }
       else { // triggers complete, return to WAITING
