@@ -1,5 +1,5 @@
 # Commands for xy positioning stage
-Version 1.0, updated 2022-02-25
+Version 2.0, updated 2022-02-25
 
 commands are case sensitive.  Use lowercase letters.
 
@@ -29,7 +29,7 @@ diagnostic codes for testing or adjusting misc. timings
 - d05:## - set trigger #ms "high" time
 
 # Loop State Machine
-Right now this information is hidden on the arduino.  I eventually need to add a d-code that allows the arduino to report it's status 
+Right now this information is hidden on the arduino.  I eventually need to add a d-code that allows the arduino to report it's status
 - 0 - waiting
 - 1 - homing init
 - ~~2 - homing wait~~ (depricated)
@@ -37,3 +37,6 @@ Right now this information is hidden on the arduino.  I eventually need to add a
 - 4 - move send
 - 5 - move wait
 - 6 - trg send
+
+# Changelog
+v1.0 - 2022-02-25 - Initial Dev
