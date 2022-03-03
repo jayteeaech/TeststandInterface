@@ -15,6 +15,7 @@ namespace Teststand_v4
     {
 
         SerialPort sPort = new SerialPort();
+        readonly Double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
 
         public Form1()
         {
@@ -62,7 +63,7 @@ namespace Teststand_v4
                 baudBox.Enabled = false;
                 ManualCommandBox.Enabled = true;
                 b_manualCommandSend.Enabled = true;
-                b_sendConf.Enabled = true;
+                b_exportSeq.Enabled = true;
                 b_MotionExecute.Enabled = true;
                 b_AbortMotion.Enabled = true;
                 d_release.Enabled = true;
@@ -144,7 +145,7 @@ namespace Teststand_v4
             }
             else
             {
-                message = "[WRKR] > Reached End Condition\r\n[WORKER] Listening Stopped";
+                message = "[WRKR] > Reached End Condition\r\n[WRKR] > Listening Stopped.";
             }
 
             CommandHistoryBox.AppendText(message + Environment.NewLine);
@@ -153,7 +154,7 @@ namespace Teststand_v4
             baudBox.Enabled = true;
             ManualCommandBox.Enabled = false;
             b_manualCommandSend.Enabled = false;
-            b_sendConf.Enabled = false;
+            b_exportSeq.Enabled = false;
             b_MotionExecute.Enabled = false;
             b_AbortMotion.Enabled = false;
             d_release.Enabled = false;
@@ -198,11 +199,6 @@ namespace Teststand_v4
             }
         }
 
-        private void startpointBox_ValueChanged(object sender, EventArgs e)
-        {
-            refreshMotionDisplays();
-        }
-
         private void refreshMotionDisplays()
         {
             float motion = (float)0.5 * ((float)nimagesBox.Value - 1) * (float)tdecBox.Value;
@@ -212,56 +208,77 @@ namespace Teststand_v4
             imageresolutionBox.Text = res.ToString();
         }
 
-        private void b_sendConf_Click(object sender, EventArgs e)
-        {
-            // build commands for the microcontroller
-           
-            msgSend("M02:" + String.Format("{0:000}", startpointBox.Value) );  // Startpoint
-            msgSend("M03:" + String.Format("{0:000}", nimagesBox.Value));      // # of Images
-            msgSend("M04:" + String.Format("{0:000}", tdecBox.Value));         // Trigger Decimation
-
-        }
-
         private void b_MotionExecute_Click(object sender, EventArgs e)
         {
-            msgSend("M00"); // Execute Motion
+            // This one's complicated
+            // need to generate sequence here
+            MessageBox.Show("gonna need to work on this feature");
+            //msgSend("M00"); // Execute Motion
         }
 
         private void b_AbortMotion_Click(object sender, EventArgs e)
         {
-            msgSend("M01"); // Abort Motion
+            msgSend("d01"); // Abort Motion
         }
 
         private void d_t1Set_Click(object sender, EventArgs e)
         {
-            int PR1 = (int)(t1Box.Value * 500);
-            msgSend("D01:" + String.Format("{0:000}", PR1));
-        }
-
-        private void d_t2Set_Click(object sender, EventArgs e)
-        {
-            int PR2 = (int)(t2Box.Value * 500);
-            msgSend("D02:" + String.Format("{0:000}", PR2));
-        }
-
-        private void d_pHoldSet_Click(object sender, EventArgs e)
-        {
-            msgSend("D03:" + String.Format("{0:000}", pHoldBox.Value));
+            int PR1 = (int)t1Box.Value;
+            msgSend("d05:" + String.Format("{0:000}", PR1));
         }
 
         private void d_trigTest_Click(object sender, EventArgs e)
         {
-            msgSend("D04");
+            msgSend("d02");
         }
 
         private void d_comTest_Click(object sender, EventArgs e)
         {
-            msgSend("D00");
+            msgSend("d00");
         }
 
         private void label15_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Written by Joe Howard, 2022\njoethoward@gmail.com");
+        }
+
+        private void b_SendTrgToggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (b_SendTrgToggle.Checked)
+            {
+                msgSend("m10"); // enable trg out
+                msgSend("m12:" + String.Format("{0:000}", (int)nTrg.Value));  // set # trg
+                msgSend("m13:" + String.Format("{0:0000}", (int)trgDelay.Value)); // set #ms delay between trg
+            }
+            else
+            {
+                msgSend("m11"); // disable trg out
+            }
+        }
+
+        private void b_absPosGo_Click(object sender, EventArgs e)
+        {
+            msgSend("m03x" + (int)((double)absPosX.Value * pulsPermm)); // set absolute position, send # of pulses
+            msgSend("m03y" + (int)((double)absPosY.Value * pulsPermm));
+            msgSend("m02"); // execute move
+        }
+
+        private void b_relPosGo_Click(object sender, EventArgs e)
+        {
+            msgSend("m04x" + (int)((double)relPosX.Value * pulsPermm)); // set relative position, send # of pulses
+            msgSend("m04y" + (int)((double)relPosY.Value * pulsPermm));
+            msgSend("m02"); // execute move
+        }
+
+        private void b_startContinuousTrg_Click(object sender, EventArgs e)
+        {
+            msgSend("m13:" + String.Format("{0:0000}", (int)trgDelay2.Value)); // set #ms delay between trg)
+            msgSend("d03"); // start continuous trigger
+        }
+
+        private void b_stopContinuousTrg_Click(object sender, EventArgs e)
+        {
+            msgSend("d04"); // stop continuous trigger
         }
     }
 }

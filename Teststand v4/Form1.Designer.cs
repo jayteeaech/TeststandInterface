@@ -45,73 +45,80 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.imageresolutionBox = new System.Windows.Forms.TextBox();
-            this.totalmotionBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.seqNSamples = new System.Windows.Forms.NumericUpDown();
+            this.seqResTextY = new System.Windows.Forms.TextBox();
+            this.seqResTextX = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.seqResY = new System.Windows.Forms.NumericUpDown();
+            this.seqSizeY = new System.Windows.Forms.NumericUpDown();
+            this.seqCenterY = new System.Windows.Forms.NumericUpDown();
+            this.seqResX = new System.Windows.Forms.NumericUpDown();
+            this.seqSizeX = new System.Windows.Forms.NumericUpDown();
+            this.seqCenterX = new System.Windows.Forms.NumericUpDown();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.tdecBox = new System.Windows.Forms.NumericUpDown();
-            this.nimagesBox = new System.Windows.Forms.NumericUpDown();
-            this.startpointBox = new System.Windows.Forms.NumericUpDown();
             this.b_AbortMotion = new System.Windows.Forms.Button();
-            this.b_sendConf = new System.Windows.Forms.Button();
+            this.b_exportSeq = new System.Windows.Forms.Button();
             this.b_MotionExecute = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.b_abortMotion2 = new System.Windows.Forms.Button();
+            this.trgDelay = new System.Windows.Forms.NumericUpDown();
+            this.nTrg = new System.Windows.Forms.NumericUpDown();
+            this.label27 = new System.Windows.Forms.Label();
+            this.b_SendTrgToggle = new System.Windows.Forms.CheckBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.relPosY = new System.Windows.Forms.NumericUpDown();
+            this.absPosY = new System.Windows.Forms.NumericUpDown();
+            this.relPosX = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.absPosX = new System.Windows.Forms.NumericUpDown();
+            this.b_relPosGo = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
+            this.b_absPosGo = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.d_release = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.trgDelay2 = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.b_stopContinuousTrg = new System.Windows.Forms.Button();
+            this.b_startContinuousTrg = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.pHoldBox = new System.Windows.Forms.NumericUpDown();
-            this.t2Box = new System.Windows.Forms.NumericUpDown();
             this.t1Box = new System.Windows.Forms.NumericUpDown();
-            this.d_pHoldSet = new System.Windows.Forms.Button();
-            this.d_t2Set = new System.Windows.Forms.Button();
             this.d_t1Set = new System.Windows.Forms.Button();
             this.d_trigTest = new System.Windows.Forms.Button();
             this.d_comTest = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.absPosGoButton = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
-            this.absPosX = new System.Windows.Forms.NumericUpDown();
-            this.absPosY = new System.Windows.Forms.NumericUpDown();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.relPosGoButton = new System.Windows.Forms.Button();
-            this.label23 = new System.Windows.Forms.Label();
-            this.relPosX = new System.Windows.Forms.NumericUpDown();
-            this.relPosY = new System.Windows.Forms.NumericUpDown();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.nTrg = new System.Windows.Forms.NumericUpDown();
-            this.label27 = new System.Windows.Forms.Label();
-            this.trgDelay = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.baudBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tdecBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nimagesBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startpointBox)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pHoldBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t2Box)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t1Box)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqNSamples)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqResY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqSizeY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqCenterY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqResX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqSizeX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqCenterX)).BeginInit();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.absPosY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.relPosX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.t1Box)).BeginInit();
             this.SuspendLayout();
             // 
             // label16
@@ -271,27 +278,32 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(234, 270);
-            this.tabControl1.TabIndex = 14;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.imageresolutionBox);
-            this.tabPage1.Controls.Add(this.totalmotionBox);
-            this.tabPage1.Controls.Add(this.label9);
-            this.tabPage1.Controls.Add(this.label7);
-            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.seqNSamples);
+            this.tabPage1.Controls.Add(this.seqResTextY);
+            this.tabPage1.Controls.Add(this.seqResTextX);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.label7);
+            this.tabPage1.Controls.Add(this.seqResY);
+            this.tabPage1.Controls.Add(this.seqSizeY);
+            this.tabPage1.Controls.Add(this.seqCenterY);
+            this.tabPage1.Controls.Add(this.seqResX);
+            this.tabPage1.Controls.Add(this.seqSizeX);
+            this.tabPage1.Controls.Add(this.seqCenterX);
+            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.tdecBox);
-            this.tabPage1.Controls.Add(this.nimagesBox);
-            this.tabPage1.Controls.Add(this.startpointBox);
             this.tabPage1.Controls.Add(this.b_AbortMotion);
-            this.tabPage1.Controls.Add(this.b_sendConf);
+            this.tabPage1.Controls.Add(this.b_exportSeq);
             this.tabPage1.Controls.Add(this.b_MotionExecute);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -301,216 +313,423 @@
             this.tabPage1.Text = "Sequence";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // imageresolutionBox
+            // seqNSamples
             // 
-            this.imageresolutionBox.Location = new System.Drawing.Point(111, 141);
-            this.imageresolutionBox.Name = "imageresolutionBox";
-            this.imageresolutionBox.ReadOnly = true;
-            this.imageresolutionBox.Size = new System.Drawing.Size(66, 20);
-            this.imageresolutionBox.TabIndex = 5;
+            this.seqNSamples.Location = new System.Drawing.Point(77, 160);
+            this.seqNSamples.Name = "seqNSamples";
+            this.seqNSamples.Size = new System.Drawing.Size(53, 20);
+            this.seqNSamples.TabIndex = 7;
             // 
-            // totalmotionBox
+            // seqResTextY
             // 
-            this.totalmotionBox.Location = new System.Drawing.Point(111, 115);
-            this.totalmotionBox.Name = "totalmotionBox";
-            this.totalmotionBox.ReadOnly = true;
-            this.totalmotionBox.Size = new System.Drawing.Size(66, 20);
-            this.totalmotionBox.TabIndex = 5;
+            this.seqResTextY.Enabled = false;
+            this.seqResTextY.Location = new System.Drawing.Point(112, 133);
+            this.seqResTextY.Name = "seqResTextY";
+            this.seqResTextY.Size = new System.Drawing.Size(53, 20);
+            this.seqResTextY.TabIndex = 14;
             // 
-            // label9
+            // seqResTextX
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 144);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 13);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Image Resolution:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 67);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 13);
-            this.label7.TabIndex = 4;
-            this.label7.Text = "Trigger Decimation:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(183, 144);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(25, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "deg";
+            this.seqResTextX.Enabled = false;
+            this.seqResTextX.Location = new System.Drawing.Point(33, 134);
+            this.seqResTextX.Name = "seqResTextX";
+            this.seqResTextX.Size = new System.Drawing.Size(53, 20);
+            this.seqResTextX.TabIndex = 14;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(174, 67);
+            this.label14.Location = new System.Drawing.Point(11, 162);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(32, 13);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "steps";
+            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.TabIndex = 13;
+            this.label14.Text = "# Samples:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(174, 41);
+            this.label13.Location = new System.Drawing.Point(92, 109);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(40, 13);
-            this.label13.TabIndex = 4;
-            this.label13.Text = "images";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(174, 15);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(32, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "steps";
+            this.label13.Size = new System.Drawing.Size(14, 13);
+            this.label13.TabIndex = 11;
+            this.label13.Text = "Y";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(183, 118);
+            this.label10.Location = new System.Drawing.Point(92, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "deg";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(36, 118);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(69, 13);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Total Motion:";
+            this.label10.Size = new System.Drawing.Size(14, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Y";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 41);
+            this.label6.Location = new System.Drawing.Point(92, 27);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 13);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "Number of Images:";
+            this.label6.Size = new System.Drawing.Size(14, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Y";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(15, 109);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(14, 13);
+            this.label12.TabIndex = 12;
+            this.label12.Text = "X";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(15, 68);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(14, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "X";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(15, 27);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "X";
+            // 
+            // seqResY
+            // 
+            this.seqResY.Location = new System.Drawing.Point(112, 107);
+            this.seqResY.Name = "seqResY";
+            this.seqResY.Size = new System.Drawing.Size(53, 20);
+            this.seqResY.TabIndex = 6;
+            // 
+            // seqSizeY
+            // 
+            this.seqSizeY.Location = new System.Drawing.Point(112, 66);
+            this.seqSizeY.Name = "seqSizeY";
+            this.seqSizeY.Size = new System.Drawing.Size(53, 20);
+            this.seqSizeY.TabIndex = 4;
+            // 
+            // seqCenterY
+            // 
+            this.seqCenterY.Location = new System.Drawing.Point(112, 25);
+            this.seqCenterY.Name = "seqCenterY";
+            this.seqCenterY.Size = new System.Drawing.Size(53, 20);
+            this.seqCenterY.TabIndex = 2;
+            // 
+            // seqResX
+            // 
+            this.seqResX.Location = new System.Drawing.Point(33, 107);
+            this.seqResX.Name = "seqResX";
+            this.seqResX.Size = new System.Drawing.Size(53, 20);
+            this.seqResX.TabIndex = 5;
+            // 
+            // seqSizeX
+            // 
+            this.seqSizeX.Location = new System.Drawing.Point(33, 66);
+            this.seqSizeX.Name = "seqSizeX";
+            this.seqSizeX.Size = new System.Drawing.Size(53, 20);
+            this.seqSizeX.TabIndex = 3;
+            // 
+            // seqCenterX
+            // 
+            this.seqCenterX.Location = new System.Drawing.Point(33, 25);
+            this.seqCenterX.Name = "seqCenterX";
+            this.seqCenterX.Size = new System.Drawing.Size(53, 20);
+            this.seqCenterX.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(170, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "GO";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 89);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(122, 13);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Resolution [# Locations]";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 48);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(115, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Sample Area Size [mm]";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(64, 15);
+            this.label5.Location = new System.Drawing.Point(7, 7);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "Startpoint:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tdecBox
-            // 
-            this.tdecBox.Location = new System.Drawing.Point(125, 65);
-            this.tdecBox.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.tdecBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.tdecBox.Name = "tdecBox";
-            this.tdecBox.Size = new System.Drawing.Size(43, 20);
-            this.tdecBox.TabIndex = 3;
-            this.tdecBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.tdecBox.ValueChanged += new System.EventHandler(this.startpointBox_ValueChanged);
-            // 
-            // nimagesBox
-            // 
-            this.nimagesBox.Location = new System.Drawing.Point(125, 39);
-            this.nimagesBox.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.nimagesBox.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nimagesBox.Name = "nimagesBox";
-            this.nimagesBox.Size = new System.Drawing.Size(43, 20);
-            this.nimagesBox.TabIndex = 3;
-            this.nimagesBox.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.nimagesBox.ValueChanged += new System.EventHandler(this.startpointBox_ValueChanged);
-            // 
-            // startpointBox
-            // 
-            this.startpointBox.Location = new System.Drawing.Point(125, 13);
-            this.startpointBox.Maximum = new decimal(new int[] {
-            999,
-            0,
-            0,
-            0});
-            this.startpointBox.Name = "startpointBox";
-            this.startpointBox.Size = new System.Drawing.Size(43, 20);
-            this.startpointBox.TabIndex = 3;
-            this.startpointBox.ValueChanged += new System.EventHandler(this.startpointBox_ValueChanged);
+            this.label5.Size = new System.Drawing.Size(115, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Sequence Center [mm]";
             // 
             // b_AbortMotion
             // 
             this.b_AbortMotion.Enabled = false;
-            this.b_AbortMotion.Location = new System.Drawing.Point(148, 189);
+            this.b_AbortMotion.Location = new System.Drawing.Point(154, 196);
             this.b_AbortMotion.Name = "b_AbortMotion";
             this.b_AbortMotion.Size = new System.Drawing.Size(65, 42);
-            this.b_AbortMotion.TabIndex = 0;
-            this.b_AbortMotion.Text = "Abort\r\nMotion";
+            this.b_AbortMotion.TabIndex = 10;
+            this.b_AbortMotion.Text = "Abort Sequence";
             this.b_AbortMotion.UseVisualStyleBackColor = true;
             this.b_AbortMotion.Click += new System.EventHandler(this.b_AbortMotion_Click);
             // 
-            // b_sendConf
+            // b_exportSeq
             // 
-            this.b_sendConf.Enabled = false;
-            this.b_sendConf.Location = new System.Drawing.Point(6, 189);
-            this.b_sendConf.Name = "b_sendConf";
-            this.b_sendConf.Size = new System.Drawing.Size(65, 42);
-            this.b_sendConf.TabIndex = 0;
-            this.b_sendConf.Text = "Send\r\nConfig";
-            this.b_sendConf.UseVisualStyleBackColor = true;
-            this.b_sendConf.Click += new System.EventHandler(this.b_sendConf_Click);
+            this.b_exportSeq.Enabled = false;
+            this.b_exportSeq.Location = new System.Drawing.Point(6, 196);
+            this.b_exportSeq.Name = "b_exportSeq";
+            this.b_exportSeq.Size = new System.Drawing.Size(65, 42);
+            this.b_exportSeq.TabIndex = 8;
+            this.b_exportSeq.Text = "Export Sequence";
+            this.b_exportSeq.UseVisualStyleBackColor = true;
             // 
             // b_MotionExecute
             // 
             this.b_MotionExecute.Enabled = false;
-            this.b_MotionExecute.Location = new System.Drawing.Point(77, 189);
+            this.b_MotionExecute.Location = new System.Drawing.Point(80, 196);
             this.b_MotionExecute.Name = "b_MotionExecute";
             this.b_MotionExecute.Size = new System.Drawing.Size(65, 42);
-            this.b_MotionExecute.TabIndex = 0;
+            this.b_MotionExecute.TabIndex = 9;
             this.b_MotionExecute.Text = "Execute\r\nMotion";
             this.b_MotionExecute.UseVisualStyleBackColor = true;
             this.b_MotionExecute.Click += new System.EventHandler(this.b_MotionExecute_Click);
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.b_abortMotion2);
+            this.tabPage3.Controls.Add(this.trgDelay);
+            this.tabPage3.Controls.Add(this.nTrg);
+            this.tabPage3.Controls.Add(this.label27);
+            this.tabPage3.Controls.Add(this.b_SendTrgToggle);
+            this.tabPage3.Controls.Add(this.label26);
+            this.tabPage3.Controls.Add(this.label25);
+            this.tabPage3.Controls.Add(this.label22);
+            this.tabPage3.Controls.Add(this.label24);
+            this.tabPage3.Controls.Add(this.label21);
+            this.tabPage3.Controls.Add(this.relPosY);
+            this.tabPage3.Controls.Add(this.absPosY);
+            this.tabPage3.Controls.Add(this.relPosX);
+            this.tabPage3.Controls.Add(this.label23);
+            this.tabPage3.Controls.Add(this.absPosX);
+            this.tabPage3.Controls.Add(this.b_relPosGo);
+            this.tabPage3.Controls.Add(this.label20);
+            this.tabPage3.Controls.Add(this.b_absPosGo);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(226, 244);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Motion Controls";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // b_abortMotion2
+            // 
+            this.b_abortMotion2.Location = new System.Drawing.Point(3, 218);
+            this.b_abortMotion2.Name = "b_abortMotion2";
+            this.b_abortMotion2.Size = new System.Drawing.Size(220, 23);
+            this.b_abortMotion2.TabIndex = 7;
+            this.b_abortMotion2.Text = "Abort Motion";
+            this.b_abortMotion2.UseVisualStyleBackColor = true;
+            this.b_abortMotion2.Click += new System.EventHandler(this.b_AbortMotion_Click);
+            // 
+            // trgDelay
+            // 
+            this.trgDelay.Location = new System.Drawing.Point(30, 66);
+            this.trgDelay.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.trgDelay.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.trgDelay.Name = "trgDelay";
+            this.trgDelay.Size = new System.Drawing.Size(51, 20);
+            this.trgDelay.TabIndex = 6;
+            this.trgDelay.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // nTrg
+            // 
+            this.nTrg.Location = new System.Drawing.Point(30, 40);
+            this.nTrg.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nTrg.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nTrg.Name = "nTrg";
+            this.nTrg.Size = new System.Drawing.Size(51, 20);
+            this.nTrg.TabIndex = 6;
+            this.nTrg.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(87, 68);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(105, 13);
+            this.label27.TabIndex = 4;
+            this.label27.Text = "ms between Triggers";
+            // 
+            // b_SendTrgToggle
+            // 
+            this.b_SendTrgToggle.AutoSize = true;
+            this.b_SendTrgToggle.Location = new System.Drawing.Point(30, 17);
+            this.b_SendTrgToggle.Name = "b_SendTrgToggle";
+            this.b_SendTrgToggle.Size = new System.Drawing.Size(146, 17);
+            this.b_SendTrgToggle.TabIndex = 5;
+            this.b_SendTrgToggle.Text = "Send Trigger after Motion";
+            this.b_SendTrgToggle.UseVisualStyleBackColor = true;
+            this.b_SendTrgToggle.CheckedChanged += new System.EventHandler(this.b_SendTrgToggle_CheckedChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(87, 42);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(67, 13);
+            this.label26.TabIndex = 4;
+            this.label26.Text = "# of Triggers";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(89, 173);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(14, 13);
+            this.label25.TabIndex = 3;
+            this.label25.Text = "Y";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(89, 122);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(14, 13);
+            this.label22.TabIndex = 3;
+            this.label22.Text = "Y";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(12, 173);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(14, 13);
+            this.label24.TabIndex = 3;
+            this.label24.Text = "X";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(12, 122);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(14, 13);
+            this.label21.TabIndex = 3;
+            this.label21.Text = "X";
+            // 
+            // relPosY
+            // 
+            this.relPosY.Location = new System.Drawing.Point(109, 171);
+            this.relPosY.Name = "relPosY";
+            this.relPosY.Size = new System.Drawing.Size(53, 20);
+            this.relPosY.TabIndex = 2;
+            // 
+            // absPosY
+            // 
+            this.absPosY.Location = new System.Drawing.Point(109, 120);
+            this.absPosY.Name = "absPosY";
+            this.absPosY.Size = new System.Drawing.Size(53, 20);
+            this.absPosY.TabIndex = 2;
+            // 
+            // relPosX
+            // 
+            this.relPosX.Location = new System.Drawing.Point(30, 171);
+            this.relPosX.Name = "relPosX";
+            this.relPosX.Size = new System.Drawing.Size(53, 20);
+            this.relPosX.TabIndex = 2;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(0, 155);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(143, 13);
+            this.label23.TabIndex = 1;
+            this.label23.Text = "Go to Relative Position: [mm]";
+            // 
+            // absPosX
+            // 
+            this.absPosX.Location = new System.Drawing.Point(30, 120);
+            this.absPosX.Name = "absPosX";
+            this.absPosX.Size = new System.Drawing.Size(53, 20);
+            this.absPosX.TabIndex = 2;
+            // 
+            // b_relPosGo
+            // 
+            this.b_relPosGo.Location = new System.Drawing.Point(167, 168);
+            this.b_relPosGo.Name = "b_relPosGo";
+            this.b_relPosGo.Size = new System.Drawing.Size(50, 23);
+            this.b_relPosGo.TabIndex = 0;
+            this.b_relPosGo.Text = "GO";
+            this.b_relPosGo.UseVisualStyleBackColor = true;
+            this.b_relPosGo.Click += new System.EventHandler(this.b_relPosGo_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(0, 104);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(145, 13);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Go to Absolute Position: [mm]";
+            // 
+            // b_absPosGo
+            // 
+            this.b_absPosGo.Location = new System.Drawing.Point(167, 117);
+            this.b_absPosGo.Name = "b_absPosGo";
+            this.b_absPosGo.Size = new System.Drawing.Size(50, 23);
+            this.b_absPosGo.TabIndex = 0;
+            this.b_absPosGo.Text = "GO";
+            this.b_absPosGo.UseVisualStyleBackColor = true;
+            this.b_absPosGo.Click += new System.EventHandler(this.b_absPosGo_Click);
+            // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.d_release);
-            this.tabPage2.Controls.Add(this.label19);
-            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.label29);
+            this.tabPage2.Controls.Add(this.trgDelay2);
+            this.tabPage2.Controls.Add(this.label28);
+            this.tabPage2.Controls.Add(this.b_stopContinuousTrg);
+            this.tabPage2.Controls.Add(this.b_startContinuousTrg);
             this.tabPage2.Controls.Add(this.label17);
-            this.tabPage2.Controls.Add(this.pHoldBox);
-            this.tabPage2.Controls.Add(this.t2Box);
             this.tabPage2.Controls.Add(this.t1Box);
-            this.tabPage2.Controls.Add(this.d_pHoldSet);
-            this.tabPage2.Controls.Add(this.d_t2Set);
             this.tabPage2.Controls.Add(this.d_t1Set);
             this.tabPage2.Controls.Add(this.d_trigTest);
             this.tabPage2.Controls.Add(this.d_comTest);
@@ -522,134 +741,101 @@
             this.tabPage2.Text = "Diagnostic";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // d_release
+            // label29
             // 
-            this.d_release.Enabled = false;
-            this.d_release.Location = new System.Drawing.Point(112, 151);
-            this.d_release.Name = "d_release";
-            this.d_release.Size = new System.Drawing.Size(108, 23);
-            this.d_release.TabIndex = 4;
-            this.d_release.Text = "Release";
-            this.d_release.UseVisualStyleBackColor = true;
-            this.d_release.Click += new System.EventHandler(this.b_AbortMotion_Click);
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(120, 70);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(67, 13);
+            this.label29.TabIndex = 8;
+            this.label29.Text = "Interval [ms]:";
             // 
-            // label19
+            // trgDelay2
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(6, 127);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 13);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "Move + Hold [step]:";
+            this.trgDelay2.Location = new System.Drawing.Point(123, 90);
+            this.trgDelay2.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.trgDelay2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.trgDelay2.Name = "trgDelay2";
+            this.trgDelay2.Size = new System.Drawing.Size(97, 20);
+            this.trgDelay2.TabIndex = 7;
+            this.trgDelay2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // label18
+            // label28
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(22, 98);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(84, 13);
-            this.label18.TabIndex = 3;
-            this.label18.Text = "Step Delay [ms]:";
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 70);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(99, 13);
+            this.label28.TabIndex = 6;
+            this.label28.Text = "Continuous Trigger:";
+            // 
+            // b_stopContinuousTrg
+            // 
+            this.b_stopContinuousTrg.Location = new System.Drawing.Point(66, 87);
+            this.b_stopContinuousTrg.Name = "b_stopContinuousTrg";
+            this.b_stopContinuousTrg.Size = new System.Drawing.Size(51, 23);
+            this.b_stopContinuousTrg.TabIndex = 5;
+            this.b_stopContinuousTrg.Text = "Stop";
+            this.b_stopContinuousTrg.UseVisualStyleBackColor = true;
+            this.b_stopContinuousTrg.Click += new System.EventHandler(this.b_stopContinuousTrg_Click);
+            // 
+            // b_startContinuousTrg
+            // 
+            this.b_startContinuousTrg.Location = new System.Drawing.Point(9, 87);
+            this.b_startContinuousTrg.Name = "b_startContinuousTrg";
+            this.b_startContinuousTrg.Size = new System.Drawing.Size(51, 23);
+            this.b_startContinuousTrg.TabIndex = 5;
+            this.b_startContinuousTrg.Text = "Start";
+            this.b_startContinuousTrg.UseVisualStyleBackColor = true;
+            this.b_startContinuousTrg.Click += new System.EventHandler(this.b_startContinuousTrg_Click);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(11, 69);
+            this.label17.Location = new System.Drawing.Point(11, 133);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(95, 13);
+            this.label17.Size = new System.Drawing.Size(101, 13);
             this.label17.TabIndex = 3;
-            this.label17.Text = "Trigger Delay [ms]:";
-            // 
-            // pHoldBox
-            // 
-            this.pHoldBox.Location = new System.Drawing.Point(112, 125);
-            this.pHoldBox.Name = "pHoldBox";
-            this.pHoldBox.Size = new System.Drawing.Size(68, 20);
-            this.pHoldBox.TabIndex = 2;
-            this.pHoldBox.ThousandsSeparator = true;
-            // 
-            // t2Box
-            // 
-            this.t2Box.DecimalPlaces = 1;
-            this.t2Box.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.t2Box.Location = new System.Drawing.Point(112, 96);
-            this.t2Box.Maximum = new decimal(new int[] {
-            19,
-            0,
-            0,
-            65536});
-            this.t2Box.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.t2Box.Name = "t2Box";
-            this.t2Box.Size = new System.Drawing.Size(68, 20);
-            this.t2Box.TabIndex = 2;
-            this.t2Box.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            65536});
+            this.label17.Text = "Trigger Length [ms]:";
             // 
             // t1Box
             // 
-            this.t1Box.DecimalPlaces = 1;
-            this.t1Box.Increment = new decimal(new int[] {
-            2,
-            0,
-            0,
-            65536});
-            this.t1Box.Location = new System.Drawing.Point(112, 67);
+            this.t1Box.Location = new System.Drawing.Point(118, 131);
             this.t1Box.Maximum = new decimal(new int[] {
-            19,
+            30,
             0,
             0,
-            65536});
+            0});
             this.t1Box.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
-            65536});
+            0});
             this.t1Box.Name = "t1Box";
-            this.t1Box.Size = new System.Drawing.Size(68, 20);
+            this.t1Box.Size = new System.Drawing.Size(62, 20);
             this.t1Box.TabIndex = 2;
             this.t1Box.Value = new decimal(new int[] {
-            100,
+            1,
             0,
             0,
-            131072});
-            // 
-            // d_pHoldSet
-            // 
-            this.d_pHoldSet.Enabled = false;
-            this.d_pHoldSet.Location = new System.Drawing.Point(186, 122);
-            this.d_pHoldSet.Name = "d_pHoldSet";
-            this.d_pHoldSet.Size = new System.Drawing.Size(34, 23);
-            this.d_pHoldSet.TabIndex = 1;
-            this.d_pHoldSet.Text = "Set";
-            this.d_pHoldSet.UseVisualStyleBackColor = true;
-            this.d_pHoldSet.Click += new System.EventHandler(this.d_pHoldSet_Click);
-            // 
-            // d_t2Set
-            // 
-            this.d_t2Set.Enabled = false;
-            this.d_t2Set.Location = new System.Drawing.Point(186, 93);
-            this.d_t2Set.Name = "d_t2Set";
-            this.d_t2Set.Size = new System.Drawing.Size(34, 23);
-            this.d_t2Set.TabIndex = 1;
-            this.d_t2Set.Text = "Set";
-            this.d_t2Set.UseVisualStyleBackColor = true;
-            this.d_t2Set.Click += new System.EventHandler(this.d_t2Set_Click);
+            0});
             // 
             // d_t1Set
             // 
             this.d_t1Set.Enabled = false;
-            this.d_t1Set.Location = new System.Drawing.Point(186, 64);
+            this.d_t1Set.Location = new System.Drawing.Point(186, 128);
             this.d_t1Set.Name = "d_t1Set";
             this.d_t1Set.Size = new System.Drawing.Size(34, 23);
             this.d_t1Set.TabIndex = 1;
@@ -687,174 +873,6 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.trgDelay);
-            this.tabPage3.Controls.Add(this.nTrg);
-            this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.checkBox1);
-            this.tabPage3.Controls.Add(this.label26);
-            this.tabPage3.Controls.Add(this.label25);
-            this.tabPage3.Controls.Add(this.label22);
-            this.tabPage3.Controls.Add(this.label24);
-            this.tabPage3.Controls.Add(this.label21);
-            this.tabPage3.Controls.Add(this.relPosY);
-            this.tabPage3.Controls.Add(this.absPosY);
-            this.tabPage3.Controls.Add(this.relPosX);
-            this.tabPage3.Controls.Add(this.label23);
-            this.tabPage3.Controls.Add(this.absPosX);
-            this.tabPage3.Controls.Add(this.relPosGoButton);
-            this.tabPage3.Controls.Add(this.label20);
-            this.tabPage3.Controls.Add(this.absPosGoButton);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(226, 244);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Motion Controls";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // absPosGoButton
-            // 
-            this.absPosGoButton.Location = new System.Drawing.Point(167, 127);
-            this.absPosGoButton.Name = "absPosGoButton";
-            this.absPosGoButton.Size = new System.Drawing.Size(50, 23);
-            this.absPosGoButton.TabIndex = 0;
-            this.absPosGoButton.Text = "GO";
-            this.absPosGoButton.UseVisualStyleBackColor = true;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(0, 114);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(145, 13);
-            this.label20.TabIndex = 1;
-            this.label20.Text = "Go to Absolute Position: [mm]";
-            // 
-            // absPosX
-            // 
-            this.absPosX.Location = new System.Drawing.Point(30, 130);
-            this.absPosX.Name = "absPosX";
-            this.absPosX.Size = new System.Drawing.Size(53, 20);
-            this.absPosX.TabIndex = 2;
-            // 
-            // absPosY
-            // 
-            this.absPosY.Location = new System.Drawing.Point(109, 130);
-            this.absPosY.Name = "absPosY";
-            this.absPosY.Size = new System.Drawing.Size(53, 20);
-            this.absPosY.TabIndex = 2;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(12, 132);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(14, 13);
-            this.label21.TabIndex = 3;
-            this.label21.Text = "X";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(89, 132);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(14, 13);
-            this.label22.TabIndex = 3;
-            this.label22.Text = "Y";
-            // 
-            // relPosGoButton
-            // 
-            this.relPosGoButton.Location = new System.Drawing.Point(167, 178);
-            this.relPosGoButton.Name = "relPosGoButton";
-            this.relPosGoButton.Size = new System.Drawing.Size(50, 23);
-            this.relPosGoButton.TabIndex = 0;
-            this.relPosGoButton.Text = "GO";
-            this.relPosGoButton.UseVisualStyleBackColor = true;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(0, 165);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(143, 13);
-            this.label23.TabIndex = 1;
-            this.label23.Text = "Go to Relative Position: [mm]";
-            // 
-            // relPosX
-            // 
-            this.relPosX.Location = new System.Drawing.Point(30, 181);
-            this.relPosX.Name = "relPosX";
-            this.relPosX.Size = new System.Drawing.Size(53, 20);
-            this.relPosX.TabIndex = 2;
-            // 
-            // relPosY
-            // 
-            this.relPosY.Location = new System.Drawing.Point(109, 181);
-            this.relPosY.Name = "relPosY";
-            this.relPosY.Size = new System.Drawing.Size(53, 20);
-            this.relPosY.TabIndex = 2;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(12, 183);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(14, 13);
-            this.label24.TabIndex = 3;
-            this.label24.Text = "X";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(89, 183);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(14, 13);
-            this.label25.TabIndex = 3;
-            this.label25.Text = "Y";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(87, 42);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(67, 13);
-            this.label26.TabIndex = 4;
-            this.label26.Text = "# of Triggers";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(30, 17);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(146, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Send Trigger after Motion";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // nTrg
-            // 
-            this.nTrg.Location = new System.Drawing.Point(30, 40);
-            this.nTrg.Name = "nTrg";
-            this.nTrg.Size = new System.Drawing.Size(51, 20);
-            this.nTrg.TabIndex = 6;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(87, 68);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(105, 13);
-            this.label27.TabIndex = 4;
-            this.label27.Text = "ms between Triggers";
-            // 
-            // trgDelay
-            // 
-            this.trgDelay.Location = new System.Drawing.Point(30, 66);
-            this.trgDelay.Name = "trgDelay";
-            this.trgDelay.Size = new System.Drawing.Size(51, 20);
-            this.trgDelay.TabIndex = 6;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -886,22 +904,25 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tdecBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nimagesBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.startpointBox)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pHoldBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t2Box)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.t1Box)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqNSamples)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqResY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqSizeY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqCenterY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqResX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqSizeX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.seqCenterX)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.absPosY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.relPosX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.relPosY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nTrg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trgDelay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.absPosX)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trgDelay2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.t1Box)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -925,35 +946,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TextBox imageresolutionBox;
-        private System.Windows.Forms.TextBox totalmotionBox;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown tdecBox;
-        private System.Windows.Forms.NumericUpDown nimagesBox;
-        private System.Windows.Forms.NumericUpDown startpointBox;
         private System.Windows.Forms.Button b_AbortMotion;
-        private System.Windows.Forms.Button b_sendConf;
+        private System.Windows.Forms.Button b_exportSeq;
         private System.Windows.Forms.Button b_MotionExecute;
         private System.Windows.Forms.TabPage tabPage2;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button d_release;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.NumericUpDown pHoldBox;
-        private System.Windows.Forms.NumericUpDown t2Box;
         private System.Windows.Forms.NumericUpDown t1Box;
-        private System.Windows.Forms.Button d_pHoldSet;
-        private System.Windows.Forms.Button d_t2Set;
         private System.Windows.Forms.Button d_t1Set;
         private System.Windows.Forms.Button d_trigTest;
         private System.Windows.Forms.Button d_comTest;
@@ -961,7 +960,7 @@
         private System.Windows.Forms.NumericUpDown trgDelay;
         private System.Windows.Forms.NumericUpDown nTrg;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox b_SendTrgToggle;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label22;
@@ -972,9 +971,35 @@
         private System.Windows.Forms.NumericUpDown relPosX;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.NumericUpDown absPosX;
-        private System.Windows.Forms.Button relPosGoButton;
+        private System.Windows.Forms.Button b_relPosGo;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Button absPosGoButton;
+        private System.Windows.Forms.Button b_absPosGo;
+        private System.Windows.Forms.NumericUpDown seqNSamples;
+        private System.Windows.Forms.TextBox seqResTextY;
+        private System.Windows.Forms.TextBox seqResTextX;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown seqResY;
+        private System.Windows.Forms.NumericUpDown seqSizeY;
+        private System.Windows.Forms.NumericUpDown seqCenterY;
+        private System.Windows.Forms.NumericUpDown seqResX;
+        private System.Windows.Forms.NumericUpDown seqSizeX;
+        private System.Windows.Forms.NumericUpDown seqCenterX;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown trgDelay2;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Button b_stopContinuousTrg;
+        private System.Windows.Forms.Button b_startContinuousTrg;
+        private System.Windows.Forms.Button b_abortMotion2;
     }
 }
 
