@@ -1,3 +1,4 @@
+#define ver "v2.1 - 2022-03-03"
 // Init pin defs
 #define EnableX 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAX 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -169,6 +170,7 @@ void loop() {
           }
         else {
           loopstate = 0; // return to WAITING
+          Serial.println("r1"); // report motion complete
           }
         }
       break;
@@ -185,6 +187,7 @@ void loop() {
         }
       else { // triggers complete, return to WAITING
         loopstate = 0;
+        Serial.println("r1"); // report motion complete
         }
       break;
     default: // WAITING
@@ -269,7 +272,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
     int cmd = (int)Serial.parseInt(SKIP_NONE);
     switch (cmd) {
       case 0: { //d00 - com test / version
-        Serial.println("v2.0 - 2022-02-24");
+        Serial.println(ver);
         break;
       }
       case 1: { // d01 - abort
@@ -296,6 +299,23 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
       case 5: { // set trigger #ms "high" time 
         char delimit = (char)Serial.read();
         trgHiTm = (int)Serial.parseInt(SKIP_NONE);
+        break;
+      }
+      case 6: { // report loop status
+        Serial.print("L");
+        Serial.println(loopstate);
+        break;
+      }
+      case 7: { // report current position
+        if (f_LocKnown) {
+          Serial.print("p");
+          Serial.print(xloc);
+          Serial.print(",");
+          Serial.println(yloc);
+        }
+        else {
+          Serial.println("p?,?");
+        }
         break;
       }
       default: {
