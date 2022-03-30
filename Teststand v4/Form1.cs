@@ -15,7 +15,40 @@ namespace Teststand_v4
     {
 
         SerialPort sPort = new SerialPort();
-        readonly Double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
+        public readonly double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
+                                                    // If you change this, also change the value in the Sequence class below because I'm too stupid to get it to reference this.
+
+        Sequence xseq = new Sequence();
+        Sequence yseq = new Sequence();
+
+        internal class Sequence
+        {
+            internal bool Active;
+            internal float min;
+            internal float max;
+            internal float n;
+            internal float[] list;
+            //internal int idx;
+
+            internal void SetSequence()
+            {
+                float diff = (max - min) / (n - 1);
+                for (int i = 0; i < this.n; i++)
+                {
+                    list[i] = (min + i*diff);
+                }
+                //idx = -1;
+            }
+            //internal float GetNextPoint()
+            //{
+            //    idx++;
+            //    if (idx > n) // 
+            //    {
+            //        idx = 0;
+            //    }
+            //    return list[idx];
+            //}
+        }
 
         public Form1()
         {
@@ -281,12 +314,7 @@ namespace Teststand_v4
             msgSend("d04"); // stop continuous trigger
         }
 
-        //private void GenerateSequence()  // WIP.  Not worth building right now
-        //{
-        //    int[] xArray = new int[(int)seqResX.Value];
-            
-        //}
-
+       
         private void b_homeAxes_Click(object sender, EventArgs e)
         {
             msgSend("m01"); // home axes
@@ -300,6 +328,33 @@ namespace Teststand_v4
         private void b_loopStatus_Click(object sender, EventArgs e)
         {
             msgSend("d06");
+        }
+
+        private void loggingEnableCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (loggingEnableCheckbox.Checked)
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                //saveFileDialog1.InitialDirectory = @ "C:\";
+                saveFileDialog1.Title = "Save text Files";
+                saveFileDialog1.CheckFileExists = true;
+                saveFileDialog1.CheckPathExists = true;
+                saveFileDialog1.DefaultExt = "txt";
+                saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    //textBox1.Text = saveFileDialog1.FileName;
+
+                    // should add some text to the file, like Data/Time.  Maybe add some error handling to make sure program can edit the file?
+                    // or maybe don't.  IDK i just need minimum viable product at this point.
+                }
+                else
+                {
+                    loggingEnableCheckbox.Checked = false; // If 
+                }
+            }
         }
     }
 }
