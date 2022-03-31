@@ -16,39 +16,70 @@ namespace Teststand_v4
 
         SerialPort sPort = new SerialPort();
         public readonly double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
-                                                    // If you change this, also change the value in the Sequence class below because I'm too stupid to get it to reference this.
+        public bool sequenceActive = false;
 
         Sequence xseq = new Sequence();
         Sequence yseq = new Sequence();
 
         internal class Sequence
         {
-            internal bool Active;
-            internal float min;
-            internal float max;
-            internal float n;
-            internal float[] list;
-            //internal int idx;
+            //internal bool Active;
+            internal double min;
+            internal double max;
+            internal int n;
+            internal double[] list;
+            internal int idx;
+            internal bool dir;
+            internal bool end;
+
+            internal void reset()
+            {
+                idx = 0;
+                dir = true;
+                end = false;
+            }
 
             internal void SetSequence()
             {
-                float diff = (max - min) / (n - 1);
-                for (int i = 0; i < this.n; i++)
+                double diff = (max - min) / (n - 1);
+                double[] build = new double[n];
+                for (int i = 0; i < n; i++)
                 {
-                    list[i] = (min + i*diff);
+                    build[i] = (min + i*diff);
                 }
-                //idx = -1;
+                list = build;
+                idx = 0;
             }
-            //internal float GetNextPoint()
-            //{
-            //    idx++;
-            //    if (idx > n) // 
-            //    {
-            //        idx = 0;
-            //    }
-            //    return list[idx];
-            //}
+            internal double GetNextPoint()
+            {
+                if (dir)
+                {
+                    idx++;
+                    if (idx == n-1) { end = true; }
+                }
+                else
+                {
+                    idx--;
+                    if (idx == 0) { end = true; }
+                }
+                return list[idx];
+            }
+            internal double GetCurrentPoint()
+            {
+                return list[idx];
+            }
         }
+
+        // Someday I'd like to make the target point a class with a built-in function, but that is out of scope for now
+        //internal class targetpoint : float
+        //{
+        //    //float position = 0;  // target position in [mm]
+
+        //    internal int toPulses() // convert target position from [mm] to # of pulses
+        //    {
+        //        return (int)(position * 629.921); // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
+        //    }
+        //}
 
         public Form1()
         {
@@ -96,8 +127,8 @@ namespace Teststand_v4
                 baudBox.Enabled = false;
                 ManualCommandBox.Enabled = true;
                 b_manualCommandSend.Enabled = true;
-                b_exportSeq.Enabled = true;
-                b_MotionExecute.Enabled = true;
+                //b_exportSeq.Enabled = true;
+                b_SequenceExecute.Enabled = true;
                 b_AbortMotion.Enabled = true;
                 //d_release.Enabled = true;
                 d_t1Set.Enabled = true;
@@ -163,6 +194,26 @@ namespace Teststand_v4
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             CommandHistoryBox.AppendText("[ RX ] > " + (string)e.UserState); // Write the backgroundWorker's status to the status box
+
+            // send next point in sequence if receive "move done" (r1) response
+            if(((string)e.UserState == "r1") && sequenceActive)
+            {
+                if (!xseq.end)
+                {
+                    msgSend("m03x" + (int)(xseq.GetNextPoint() * pulsPermm)); // set absolute position, send # of pulses
+                    msgSend("m03y" + (int)(yseq.GetCurrentPoint() * pulsPermm));
+                    msgSend("m02"); // execute move
+                    if (xseq.end && yseq.end) { sequenceActive = false; MessageBox.Show("Sequence Complete!");  } // If both X and Y sequences are at their end, then whole array is finished
+                }
+                else
+                {
+                    msgSend("m03x" + (int)(xseq.GetCurrentPoint() * pulsPermm));
+                    xseq.dir = !xseq.dir;
+                    xseq.end = false;
+                    msgSend("m03y" + (int)(yseq.GetNextPoint() * pulsPermm));
+                    msgSend("m02"); // execute move
+                }
+            }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -187,8 +238,8 @@ namespace Teststand_v4
             baudBox.Enabled = true;
             ManualCommandBox.Enabled = false;
             b_manualCommandSend.Enabled = false;
-            b_exportSeq.Enabled = false;
-            b_MotionExecute.Enabled = false;
+            //b_exportSeq.Enabled = false;
+            b_SequenceExecute.Enabled = false;
             b_AbortMotion.Enabled = false;
             //d_release.Enabled = false;
             d_t1Set.Enabled = false;
@@ -243,10 +294,32 @@ namespace Teststand_v4
 
         private void b_MotionExecute_Click(object sender, EventArgs e)
         {
-            // This one's complicated
-            // need to generate sequence here
-            MessageBox.Show("gonna need to work on this feature");
-            //msgSend("M00"); // Execute Motion
+            // Initialize Sequence for loop
+            // next point sent when "move done" command received ( see backgroundworker1_progresschanged() )
+
+            // Add error checking here.  Skipping for testing
+
+            // Update x sequence object with new values
+            xseq.min = (double)seqCenterX.Value - (double)seqSizeX.Value / 2;
+            xseq.max = (double)seqCenterX.Value + (double)seqSizeX.Value / 2;
+            xseq.n = (int)seqSizeX.Value;
+            xseq.reset();
+            xseq.SetSequence();
+
+            // Update y sequence object with new values
+            yseq.min = (double)seqCenterY.Value - (double)seqSizeY.Value / 2;
+            yseq.max = (double)seqCenterY.Value + (double)seqSizeY.Value / 2;
+            yseq.n = (int)seqSizeY.Value;
+            yseq.reset();
+            yseq.SetSequence();
+
+            // Set sequenceActive flag to true (will listen for "move done" response)
+            sequenceActive = true;
+
+            // Send first point
+            msgSend("m03x" + (int)(xseq.GetCurrentPoint() * pulsPermm)); // set absolute position, send # of pulses
+            msgSend("m03y" + (int)(yseq.GetCurrentPoint() * pulsPermm));
+            msgSend("m02"); // execute move
         }
 
         private void b_AbortMotion_Click(object sender, EventArgs e)
@@ -336,7 +409,7 @@ namespace Teststand_v4
             {
                 SaveFileDialog saveFileDialog1 = new SaveFileDialog();
                 //saveFileDialog1.InitialDirectory = @ "C:\";
-                saveFileDialog1.Title = "Save text Files";
+                saveFileDialog1.Title = "Choose a File for Logging...";
                 saveFileDialog1.CheckFileExists = true;
                 saveFileDialog1.CheckPathExists = true;
                 saveFileDialog1.DefaultExt = "txt";
