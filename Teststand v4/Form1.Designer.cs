@@ -78,7 +78,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this.b_absPosGo = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.loggingEnableCheckbox = new System.Windows.Forms.CheckBox();
             this.seqNSamples = new System.Windows.Forms.NumericUpDown();
             this.seqResTextY = new System.Windows.Forms.TextBox();
             this.seqResTextX = new System.Windows.Forms.TextBox();
@@ -102,6 +101,7 @@
             this.b_AbortMotion = new System.Windows.Forms.Button();
             this.b_SequenceExecute = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.b_savesequence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.baudBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trgDelay2)).BeginInit();
@@ -671,7 +671,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.loggingEnableCheckbox);
             this.tabPage1.Controls.Add(this.seqNSamples);
             this.tabPage1.Controls.Add(this.seqResTextY);
             this.tabPage1.Controls.Add(this.seqResTextX);
@@ -693,6 +692,7 @@
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.b_AbortMotion);
+            this.tabPage1.Controls.Add(this.b_savesequence);
             this.tabPage1.Controls.Add(this.b_SequenceExecute);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -701,17 +701,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sequence";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // loggingEnableCheckbox
-            // 
-            this.loggingEnableCheckbox.AutoSize = true;
-            this.loggingEnableCheckbox.Location = new System.Drawing.Point(154, 162);
-            this.loggingEnableCheckbox.Name = "loggingEnableCheckbox";
-            this.loggingEnableCheckbox.Size = new System.Drawing.Size(100, 17);
-            this.loggingEnableCheckbox.TabIndex = 15;
-            this.loggingEnableCheckbox.Text = "Enable Logging";
-            this.loggingEnableCheckbox.UseVisualStyleBackColor = true;
-            this.loggingEnableCheckbox.CheckedChanged += new System.EventHandler(this.loggingEnableCheckbox_CheckedChanged);
             // 
             // seqNSamples
             // 
@@ -880,7 +869,7 @@
             // b_AbortMotion
             // 
             this.b_AbortMotion.Enabled = false;
-            this.b_AbortMotion.Location = new System.Drawing.Point(154, 196);
+            this.b_AbortMotion.Location = new System.Drawing.Point(152, 196);
             this.b_AbortMotion.Name = "b_AbortMotion";
             this.b_AbortMotion.Size = new System.Drawing.Size(65, 42);
             this.b_AbortMotion.TabIndex = 10;
@@ -891,7 +880,7 @@
             // b_SequenceExecute
             // 
             this.b_SequenceExecute.Enabled = false;
-            this.b_SequenceExecute.Location = new System.Drawing.Point(80, 196);
+            this.b_SequenceExecute.Location = new System.Drawing.Point(79, 196);
             this.b_SequenceExecute.Name = "b_SequenceExecute";
             this.b_SequenceExecute.Size = new System.Drawing.Size(65, 42);
             this.b_SequenceExecute.TabIndex = 9;
@@ -909,6 +898,16 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(234, 270);
             this.tabControl1.TabIndex = 0;
+            // 
+            // b_savesequence
+            // 
+            this.b_savesequence.Location = new System.Drawing.Point(6, 196);
+            this.b_savesequence.Name = "b_savesequence";
+            this.b_savesequence.Size = new System.Drawing.Size(65, 42);
+            this.b_savesequence.TabIndex = 9;
+            this.b_savesequence.Text = "Save Sequence";
+            this.b_savesequence.UseVisualStyleBackColor = true;
+            this.b_savesequence.Click += new System.EventHandler(this.b_savesequence_Click);
             // 
             // Form1
             // 
@@ -1038,7 +1037,7 @@
         private System.Windows.Forms.Button b_homeAxes;
         private System.Windows.Forms.Button b_currentPos;
         private System.Windows.Forms.Button b_loopStatus;
-        private System.Windows.Forms.CheckBox loggingEnableCheckbox;
+        private System.Windows.Forms.Button b_savesequence;
     }
 }
 

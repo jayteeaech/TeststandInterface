@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.IO;
 
 namespace Teststand_v4
 {
@@ -292,13 +293,8 @@ namespace Teststand_v4
         //    imageresolutionBox.Text = res.ToString();
         //}
 
-        private void b_MotionExecute_Click(object sender, EventArgs e)
+        private void initsequence()
         {
-            // Initialize Sequence for loop
-            // next point sent when "move done" command received ( see backgroundworker1_progresschanged() )
-
-            // Add error checking here.  Skipping for testing
-
             // Update x sequence object with new values
             xseq.min = (double)seqCenterX.Value - (double)seqSizeX.Value / 2;
             xseq.max = (double)seqCenterX.Value + (double)seqSizeX.Value / 2;
@@ -312,6 +308,16 @@ namespace Teststand_v4
             yseq.n = (int)seqSizeY.Value;
             yseq.reset();
             yseq.SetSequence();
+
+        }
+        private void b_MotionExecute_Click(object sender, EventArgs e)
+        {
+            // Initialize Sequence for loop
+            // next point sent when "move done" command received ( see backgroundworker1_progresschanged() )
+
+            // Add error checking here.  Skipping for testing
+
+            initsequence();
 
             // Set sequenceActive flag to true (will listen for "move done" response)
             sequenceActive = true;
@@ -403,29 +409,42 @@ namespace Teststand_v4
             msgSend("d06");
         }
 
-        private void loggingEnableCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void b_savesequence_Click(object sender, EventArgs e)
         {
-            if (loggingEnableCheckbox.Checked)
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            //saveFileDialog1.InitialDirectory = @ "C:\";
+            saveFileDialog1.Title = "Choose a File for Logging...";
+            saveFileDialog1.CheckFileExists = false;
+            saveFileDialog1.CheckPathExists = false;
+            saveFileDialog1.DefaultExt = "txt";
+            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                //saveFileDialog1.InitialDirectory = @ "C:\";
-                saveFileDialog1.Title = "Choose a File for Logging...";
-                saveFileDialog1.CheckFileExists = true;
-                saveFileDialog1.CheckPathExists = true;
-                saveFileDialog1.DefaultExt = "txt";
-                saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                saveFileDialog1.FilterIndex = 2;
-                saveFileDialog1.RestoreDirectory = true;
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    //textBox1.Text = saveFileDialog1.FileName;
+                //textBox1.Text = saveFileDialog1.FileName;
 
-                    // should add some text to the file, like Data/Time.  Maybe add some error handling to make sure program can edit the file?
-                    // or maybe don't.  IDK i just need minimum viable product at this point.
-                }
-                else
+                CommandHistoryBox.AppendText("[ UI ] > Saving Sequence to: " + saveFileDialog1.FileName + Environment.NewLine);
+                using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
                 {
-                    loggingEnableCheckbox.Checked = false; // If 
+                    initsequence();
+
+                    sw.WriteLine($"Sequence Saved: {DateTime.Now.ToLongDateString()} {DateTime.Now.ToLongTimeString()}");
+                    sw.WriteLine(xseq.GetCurrentPoint() + "," + yseq.GetCurrentPoint());
+                    while (true)
+                    {
+                        if (!xseq.end)
+                        {
+                            sw.WriteLine(xseq.GetNextPoint() + "," + yseq.GetCurrentPoint());
+                            if (xseq.end && yseq.end) { break; } // If both X and Y sequences are at their end, then whole array is finished
+                        }
+                        else
+                        {
+                            sw.WriteLine(xseq.GetCurrentPoint() + "," + yseq.GetNextPoint());
+                            xseq.dir = !xseq.dir;
+                            xseq.end = false;
+                        }
+                    }
                 }
             }
         }
