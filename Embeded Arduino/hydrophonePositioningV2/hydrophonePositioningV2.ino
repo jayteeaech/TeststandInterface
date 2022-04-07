@@ -1,4 +1,4 @@
-#define ver "v2.1 - 2022-03-03"
+#define ver "v2.1.1 - 2022-03-04"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -19,13 +19,13 @@ long xPulsRemain = 0; // remaining pulses to send to x motor
 long yloc = 0;
 long ytarget = 0;
 long yPulsRemain = 0; // remaining pulses to send to y motor
-int trgDelay = 500; // [ms] delay between trigger out pulses
-int trgHiTm = 5; // [ms]  trigger "high" duration
+int trgDelay = 5000; // [us] delay between trigger out pulses
+int trgHiTm = 50; // [us]  trigger "high" duration
 int ntrg = 6; // number of trigger out pulses
 int trgremain = 0; // # trigger pulses remaining
 unsigned long tlastpuls = 0; // [ms] time of last pulse, used for timing
 unsigned long tcurrent = 0; // container for "current" time, used for timing
-int pulsdelay = 5;  // [ms] 1/2 the pulse period 
+int pulsdelay = 10;  // [us] 1/2 the pulse period 
 
 // init global flags
 bool f_autotrg = 1;
@@ -135,7 +135,7 @@ void loop() {
         break;
         }
     case 4: // MOVE SEND
-      tcurrent = millis();
+      tcurrent = micros();
       if ((unsigned long)(tcurrent - tlastpuls) >= pulsdelay) {
         if (xPulsRemain > 0){
           digitalWrite(InputBX,HIGH); // set pulse high
@@ -145,19 +145,28 @@ void loop() {
           digitalWrite(InputBY,HIGH);
           yPulsRemain--;
           }
-        delay(pulsdelay); // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
+        delayMicroseconds(pulsdelay); // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
         digitalWrite(InputBX,LOW); // set pulse low
         digitalWrite(InputBY,LOW);
         if ((xPulsRemain == 0) && (yPulsRemain == 0)){
+          Serial.println("advance to L5");
           loopstate = 5; // advance to MOVE WAIT
           }
-        tlastpuls = millis(); // pulse ended. update last pulse time
+//        if ((digitalRead(HLFBX)==LOW) && (digitalRead(HLFBY)==LOW)) {
+//          // If motors report ASG while moves are still being commanded,
+//          //  1) we are likely in a Homing move and
+//          //  2) we have hit the hard stops, i.e. arrived home
+//          // This may not be an accurate assumption, but it's hopefully good enough
+//          Serial.println("r2"); // report "home"
+//          loopstate = 5; // complete "move done" tasks
+//        }
+        tlastpuls = micros(); // pulse ended. update last pulse time
         } // end timing check
       break;
     case 5: // MOVE WAIT
       // Check motor feedback, if both HIGH, then move is done
-      //if((bool)digitalRead(HLFBX) && (bool)digitalRead(HLFBY)) { 
-      if((bool)digitalRead(HLFBX)) { 
+      if((digitalRead(HLFBX)==LOW) && (digitalRead(HLFBY)==LOW)) { 
+      //if((bool)digitalRead(HLFBX)) { 
         f_LocKnown = 1;
         xloc = xtarget;
         yloc = ytarget;
@@ -180,7 +189,7 @@ void loop() {
         if ((unsigned long)(tcurrent - tlastpuls) >= trgDelay) {
           trgremain--;
           digitalWrite(xducerTrg,HIGH); // set trg high
-          delay(trgHiTm);  // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
+          delayMicroseconds(trgHiTm);  // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
           digitalWrite(xducerTrg,LOW); // set trg low
           tlastpuls = millis(); // pulse ended. update last pulse time
           }
@@ -316,6 +325,14 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
         else {
           Serial.println("p?,?");
         }
+        break;
+      }
+      case 8: { // tmp for reading HLFBx
+        Serial.println(digitalRead(HLFBX));
+        break;
+      }
+      case 9: { // tmp for reading HLFBy
+        Serial.println(digitalRead(HLFBY));
         break;
       }
       default: {

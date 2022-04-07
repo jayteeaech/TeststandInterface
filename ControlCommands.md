@@ -6,6 +6,8 @@ commands are case sensitive.  Use lowercase letters.
 ## M-Codes
 Define motion actions.  Position targets are given in # of pulses unless otherwise specified.  Current hardware (as of 2022-03-03) uses motors set to 1000 pulses / revolution and 3/8"-16 leadscrews.  This combination results in 629.921 Pulses / mm.
 
+High Level Feed Back (HLFB) is LOW when All Systems Go (ASG), and HIGH when motors are disabled or in motion.
+
 After motion (and trigger sequence, if enabled) is complete, Arduino sends "r1" - move complete
 
 ### Motion Control
@@ -32,6 +34,11 @@ diagnostic codes for testing or adjusting misc. timings
 - d06 - return loop status (L#)
 - d07 - return current position (p#,#).  Returns (p?,?) if location is unknown
 
+# Response Codes
+Work in progress...
+- r1: Move complete
+- r2: Motors at home position (more accurately: motors reported ASG during a move send)
+
 # Loop State Machine
 Arduino main loop is structured as a state machine.  Issue command d06 to request loop status.
 - 0 - waiting
@@ -51,7 +58,7 @@ Arduino main loop is structured as a state machine.  Issue command d06 to reques
 
 **(4) Move Send** - Set at end of State (1) and (3). If pulse timer exceeds `pulsedelay`, set X/Y control pins high, wait for `pulsdelay` ms, and set control pins low.  Note that system will be unresponsive to serial during the high time due to `delay()`. Continues to (5) Move Wait.
 
-**(5) Move Wait** - Set at end of State 4.  Listens to HLFB (High Level FeedBack) inputs.  When both X/Y are high, continues to (6) Trigger Send if `autotrg` flag is set, (0) Wait otherwise.
+**(5) Move Wait** - Set at end of State 4.  Listens to HLFB inputs.  When both X/Y are *LOW*, continues to (6) Trigger Send if `autotrg` flag is set, (0) Wait otherwise.
 
 **(6) Trigger Send** - Set by d02, d03 commands and State (5).  If pulse timer exceeds `trgDelay`, set trigger pin high, wait for `trgHiTm` ms, and set trigger pin low.  Continues to (0) when trigger sequence is complete.
 
