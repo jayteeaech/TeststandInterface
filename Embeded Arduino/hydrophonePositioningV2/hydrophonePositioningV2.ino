@@ -1,13 +1,13 @@
 #define ver "v2.1 - 2022-03-03"
 // Init pin defs
-#define EnableX 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
-#define InputAX 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
-#define InputBX 4 // ClearPath Input B; +InputB = BLK wire; -InputB = YEL wire
-#define HLFBX 5 // ClearPath HLFB Output; +HLFB = GRN wire; -HLFB = RED wire
-#define EnableY 6 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
-#define InputAY 7 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
-#define InputBY 8 // ClearPath Input B; +InputB = BLK wire; -InputB = YEL wire
-#define HLFBY 9 // ClearPath HLFB Output; +HLFB = GRN wire; -HLFB = RED wire
+#define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
+#define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
+#define InputBY 4 // ClearPath Input B; +InputB = BLK wire; -InputB = YEL wire
+#define HLFBY 5 // ClearPath HLFB Output; +HLFB = GRN wire; -HLFB = RED wire
+#define EnableX 6 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
+#define InputAX 7 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
+#define InputBX 8 // ClearPath Input B; +InputB = BLK wire; -InputB = YEL wire
+#define HLFBX 9 // ClearPath HLFB Output; +HLFB = GRN wire; -HLFB = RED wire
 #define xducerTrg 10 // Signal to transducer box
 #define LEDpin 13 // Arduino on-board LED
 
