@@ -1,4 +1,4 @@
-#define ver "v2.1.1 - 2022-03-04"
+#define ver "v2.1.2 - 2022-04-07"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -25,10 +25,11 @@ int ntrg = 6; // number of trigger out pulses
 int trgremain = 0; // # trigger pulses remaining
 unsigned long tlastpuls = 0; // [ms] time of last pulse, used for timing
 unsigned long tcurrent = 0; // container for "current" time, used for timing
+unsigned long tmovestart = 0;
 int pulsdelay = 10;  // [us] 1/2 the pulse period 
 
 // init global flags
-bool f_autotrg = 1;
+bool f_autotrg = 0;
 bool f_LocKnown = 0;
 bool f_trgContinuous = 0;
 
@@ -93,6 +94,7 @@ void loop() {
       digitalWrite(InputAY,LOW); // set Y dir to negative
       xPulsRemain = 629000; // max pulses for whole travel range (1000mm * 0.629rev/mm * 1000pulse/rev = 629000)
       yPulsRemain = 629000;
+      tmovestart = micros();
       loopstate = 4; // advance to MOVESEND state
       break;
 //    case 2: // HOMING WAIT - DEPRICATED
@@ -106,6 +108,7 @@ void loop() {
       if (f_LocKnown) {
         digitalWrite(EnableX,HIGH); // motor enable
         digitalWrite(EnableY,HIGH);
+        delay(1);
         // Calculate X move
         xPulsRemain = xtarget - xloc; // may be negative.
         if (xPulsRemain < 0){
@@ -126,6 +129,7 @@ void loop() {
           }
         
         f_LocKnown = 0;
+        tmovestart = micros();
         loopstate = 4; // advance to MOVE SEND
         // no break
         }
@@ -152,16 +156,19 @@ void loop() {
           Serial.println("advance to L5");
           loopstate = 5; // advance to MOVE WAIT
           }
-//        if ((digitalRead(HLFBX)==LOW) && (digitalRead(HLFBY)==LOW)) {
-//          // If motors report ASG while moves are still being commanded,
-//          //  1) we are likely in a Homing move and
-//          //  2) we have hit the hard stops, i.e. arrived home
-//          // This may not be an accurate assumption, but it's hopefully good enough
-//          Serial.println("r2"); // report "home"
-//          loopstate = 5; // complete "move done" tasks
-//        }
+        
         tlastpuls = micros(); // pulse ended. update last pulse time
         } // end timing check
+        // check for ASG mid-move send
+        // motors tend to report ASG 10ms into the move before returning to "not ready"  Can't figure out why, so bodging this solution
+        if ( ((unsigned long)(tcurrent - tmovestart) >= 20000) && (digitalRead(HLFBX)==LOW) && (digitalRead(HLFBY)==LOW)) {
+          // If motors report ASG while moves are still being commanded,
+          //  1) we are likely in a Homing move and
+          //  2) we have hit the hard stops, i.e. arrived home
+          // This may not be an accurate assumption, but it's hopefully good enough
+          Serial.println("r2"); // report "home"
+          loopstate = 5; // complete "move done" tasks
+        }
       break;
     case 5: // MOVE WAIT
       // Check motor feedback, if both HIGH, then move is done
@@ -333,6 +340,14 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
       }
       case 9: { // tmp for reading HLFBy
         Serial.println(digitalRead(HLFBY));
+        break;
+      }
+      case 10: { // override home
+        xloc = 0;
+        xtarget = 0;
+        yloc = 0;
+        ytarget = 0;
+        f_LocKnown = 1;
         break;
       }
       default: {
