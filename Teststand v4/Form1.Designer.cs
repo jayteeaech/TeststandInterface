@@ -333,9 +333,15 @@
             // 
             // trgDelay2
             // 
+<<<<<<< Updated upstream
             this.trgDelay2.Location = new System.Drawing.Point(120, 81);
             this.trgDelay2.Maximum = new decimal(new int[] {
             1000,
+=======
+            this.t1Box.Location = new System.Drawing.Point(121, 110);
+            this.t1Box.Maximum = new decimal(new int[] {
+            10000,
+>>>>>>> Stashed changes
             0,
             0,
             0});
@@ -384,6 +390,7 @@
             // 
             // label17
             // 
+<<<<<<< Updated upstream
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(14, 112);
             this.label17.Name = "label17";
@@ -396,6 +403,11 @@
             this.t1Box.Location = new System.Drawing.Point(121, 110);
             this.t1Box.Maximum = new decimal(new int[] {
             30,
+=======
+            this.trgDelay2.Location = new System.Drawing.Point(120, 81);
+            this.trgDelay2.Maximum = new decimal(new int[] {
+            10000,
+>>>>>>> Stashed changes
             0,
             0,
             0});
@@ -518,6 +530,7 @@
             // 
             // nTrg
             // 
+<<<<<<< Updated upstream
             this.nTrg.Location = new System.Drawing.Point(30, 61);
             this.nTrg.Maximum = new decimal(new int[] {
             200,
@@ -537,6 +550,17 @@
             0,
             0,
             0});
+=======
+            this.absPosX.Location = new System.Drawing.Point(30, 141);
+            this.absPosX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.absPosX.Name = "absPosX";
+            this.absPosX.Size = new System.Drawing.Size(53, 20);
+            this.absPosX.TabIndex = 2;
+>>>>>>> Stashed changes
             // 
             // label27
             // 
@@ -549,6 +573,7 @@
             // 
             // b_SendTrgToggle
             // 
+<<<<<<< Updated upstream
             this.b_SendTrgToggle.AutoSize = true;
             this.b_SendTrgToggle.Location = new System.Drawing.Point(30, 38);
             this.b_SendTrgToggle.Name = "b_SendTrgToggle";
@@ -557,24 +582,69 @@
             this.b_SendTrgToggle.Text = "Send Trigger after Motion";
             this.b_SendTrgToggle.UseVisualStyleBackColor = true;
             this.b_SendTrgToggle.CheckedChanged += new System.EventHandler(this.b_SendTrgToggle_CheckedChanged);
+=======
+            this.relPosX.Location = new System.Drawing.Point(30, 192);
+            this.relPosX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.relPosX.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.relPosX.Name = "relPosX";
+            this.relPosX.Size = new System.Drawing.Size(53, 20);
+            this.relPosX.TabIndex = 2;
+>>>>>>> Stashed changes
             // 
             // label26
             // 
+<<<<<<< Updated upstream
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(87, 63);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(67, 13);
             this.label26.TabIndex = 4;
             this.label26.Text = "# of Triggers";
+=======
+            this.absPosY.Location = new System.Drawing.Point(109, 141);
+            this.absPosY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.absPosY.Name = "absPosY";
+            this.absPosY.Size = new System.Drawing.Size(53, 20);
+            this.absPosY.TabIndex = 2;
+>>>>>>> Stashed changes
             // 
             // label25
             // 
+<<<<<<< Updated upstream
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(89, 194);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(14, 13);
             this.label25.TabIndex = 3;
             this.label25.Text = "Y";
+=======
+            this.relPosY.Location = new System.Drawing.Point(109, 192);
+            this.relPosY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.relPosY.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
+            this.relPosY.Name = "relPosY";
+            this.relPosY.Size = new System.Drawing.Size(53, 20);
+            this.relPosY.TabIndex = 2;
+>>>>>>> Stashed changes
             // 
             // label22
             // 
