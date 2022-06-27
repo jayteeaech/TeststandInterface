@@ -1,4 +1,4 @@
-#define ver "v2.2.0 - 2022-06-27"
+#define ver "v2.2.1 - 2022-06-27"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -27,8 +27,8 @@ unsigned long tlastpuls = 0; // [ms] time of last pulse, used for timing
 unsigned long tcurrent = 0; // container for "current" time, used for timing
 unsigned long tmovestart = 0;
 int pulsdelay = 10;  // [us] 1/2 the pulse period
-byte HLFBxAccum; // accumulator for HLFB bits.  Change data type to increase averaging time
-byte HLFByAccum;
+int HLFBxAccum; // accumulator for HLFB bits.  Change data type to increase averaging time
+int HLFByAccum;
 byte HLFBstatus = 0b11;
 
 // init global flags
@@ -161,7 +161,7 @@ void loop() {
         }
 
         tlastpuls = micros(); // pulse ended. update last pulse time
-      } // end timing check
+        
       // check for ASG mid-move send
       HLFBstatus = HLFBfilter(); // status is 0 when both HLFB are ASG
       if ( HLFBstatus == 0) {
@@ -172,10 +172,11 @@ void loop() {
         Serial.println("r2"); // report "home"
         loopstate = 5; // complete "move done" tasks
       }
+      } // end timing check
       break;
     case 5: // MOVE WAIT
       // Check motor feedback, if both LOW, then move is done
-      HLFBstatus = HLFBfilter(); // status is 0 when both HLFB are ASG
+      HLFBstatus = HLFBfilter(); // status is 0 when both HLFB report ASG
       if (HLFBstatus == 0) {
         //if((bool)digitalRead(HLFBX)) {
         f_LocKnown = 1;
