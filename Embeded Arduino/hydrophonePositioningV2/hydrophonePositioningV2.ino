@@ -1,4 +1,4 @@
-#define ver "v2.2.1 - 2022-06-27"
+#define ver "v2.2.2 - 2023-05-24"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -26,7 +26,7 @@ int trgremain = 0; // # trigger pulses remaining
 unsigned long tlastpuls = 0; // [ms] time of last pulse, used for timing
 unsigned long tcurrent = 0; // container for "current" time, used for timing
 unsigned long tmovestart = 0;
-int pulsdelay = 10;  // [us] 1/2 the pulse period
+int pulsdelay = 20;  // [us] 1/2 the pulse period
 int HLFBxAccum; // accumulator for HLFB bits.  Change data type to increase averaging time
 int HLFByAccum;
 byte HLFBstatus = 0b11;
@@ -35,6 +35,7 @@ byte HLFBstatus = 0b11;
 bool f_autotrg = 0;
 bool f_LocKnown = 0;
 bool f_trgContinuous = 0;
+bool f_homing = 0;
 
 void setup() {
   // Setup Pin I/O:
@@ -86,6 +87,7 @@ void loop() {
       delay(100);
       digitalWrite(EnableX, HIGH);
       digitalWrite(EnableY, HIGH);
+      f_homing = 1; // set homing flag
       // per clearpath manual, "manual hard stop homing sequence"
       //  is just "issue a move toward the Physical Home ... long enough to
       //  guarantee the load will hit the hard stop" (p.188)
@@ -113,7 +115,7 @@ void loop() {
         digitalWrite(EnableY, HIGH);
         delay(1);
         // Calculate X move
-        xPulsRemain = xtarget - xloc; // may be negative.
+        xPulsRemain = (long)((long)xtarget - (long)xloc); // may be negative.
         if (xPulsRemain < 0) {
           digitalWrite(InputAX, LOW); // set xdir to -
           xPulsRemain = abs(xPulsRemain);
@@ -121,15 +123,17 @@ void loop() {
         else {
           digitalWrite(InputAX, HIGH); // set xdir to +
         }
+        Serial.println(xPulsRemain);
         // Calculate Y move
-        yPulsRemain = ytarget - yloc; // may be negative.
+        yPulsRemain = (long)((long)ytarget - (long)yloc); // may be negative.
         if (yPulsRemain < 0) {
-          digitalWrite(InputAY, LOW); // set xdir to -
+          digitalWrite(InputAY, LOW); // set ydir to -
           yPulsRemain = abs(yPulsRemain);
         }
         else {
-          digitalWrite(InputAY, HIGH); // set xdir to +
+          digitalWrite(InputAY, HIGH); // set ydir to +
         }
+        Serial.println(yPulsRemain);
 
         f_LocKnown = 0;
         tmovestart = micros();
@@ -165,12 +169,14 @@ void loop() {
       // check for ASG mid-move send
       HLFBstatus = HLFBfilter(); // status is 0 when both HLFB are ASG
       if ( HLFBstatus == 0) {
-        // If motors report ASG while moves are still being commanded,
-        //  1) we are likely in a Homing move and
-        //  2) we have hit the hard stops, i.e. arrived home
-        // This may not be an accurate assumption, but it's hopefully good enough
-        Serial.println("r2"); // report "home"
-        loopstate = 5; // complete "move done" tasks
+        if (f_homing) {
+          Serial.println("r2"); // report "home"
+          f_homing = 0;
+          loopstate = 5; // complete "move done" tasks
+        }
+        else {
+          Serial.println("Unexpected obstruction");
+        }
       }
       } // end timing check
       break;
@@ -258,7 +264,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
             }
           case 3: { // m03 - set absolute x/y location target
               char ax = (char)Serial.read();
-              int loc = (int)Serial.parseInt(SKIP_NONE);
+              int loc = (long)Serial.parseInt(SKIP_NONE);
               switch (ax) {
                 case 'x':
                   xtarget = loc;
@@ -300,7 +306,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
             }
           case 12: { // set # of triggers
               char delimit = (char)Serial.read();
-              ntrg = (int)Serial.parseInt(SKIP_NONE);
+              ntrg = (long)Serial.parseInt(SKIP_NONE);
               break;
             }
           case 13: { // set #ms delay between triggers
