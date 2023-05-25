@@ -264,7 +264,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
             }
           case 3: { // m03 - set absolute x/y location target
               char ax = (char)Serial.read();
-              int loc = (long)Serial.parseInt(SKIP_NONE);
+              long loc = (long)Serial.parseInt(SKIP_NONE);
               switch (ax) {
                 case 'x':
                   xtarget = loc;
