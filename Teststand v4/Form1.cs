@@ -187,7 +187,7 @@ namespace Teststand_v4
             CommandHistoryBox.AppendText("[ RX ] > " + (string)e.UserState); // Write the backgroundWorker's status to the status box
 
             // send next point in sequence if receive "move done" (r1) response
-            if(((string)e.UserState == "r1\n") && sequenceActive)
+            if(((string)e.UserState == "r1\r\n") && sequenceActive)
             {
                 if (!xseq.end)
                 {
