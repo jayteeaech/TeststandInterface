@@ -184,10 +184,11 @@ namespace Teststand_v4
         }
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            CommandHistoryBox.AppendText("[ RX ] > " + (string)e.UserState); // Write the backgroundWorker's status to the status box
+            string msg = (string)e.UserState;
+            CommandHistoryBox.AppendText("[ RX ] > " + msg); // Write the backgroundWorker's status to the status box
 
             // send next point in sequence if receive "move done" (r1) response
-            if(e.UserState.Equals("r1\r\n") && sequenceActive)
+            if(msg.Equals("r1\r\n") && sequenceActive)
             {
                 if (!xseq.end)
                 {
