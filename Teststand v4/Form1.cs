@@ -71,16 +71,6 @@ namespace Teststand_v4
             }
         }
 
-        // Someday I'd like to make the target point a class with a built-in function, but that is out of scope for now
-        //internal class targetpoint : float
-        //{
-        //    //float position = 0;  // target position in [mm]
-
-        //    internal int toPulses() // convert target position from [mm] to # of pulses
-        //    {
-        //        return (int)(position * 629.921); // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
-        //    }
-        //}
 
         public Form1()
         {
@@ -409,7 +399,7 @@ namespace Teststand_v4
             msgSend("d06");
         }
 
-        private void b_savesequence_Click(object sender, EventArgs e)
+        private SaveFileDialog savefile()
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             //saveFileDialog1.InitialDirectory = @ "C:\";
@@ -420,12 +410,28 @@ namespace Teststand_v4
             saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+
+            return saveFileDialog1;
+        }
+
+        private void b_savesequence_Click(object sender, EventArgs e)
+        {
+            //SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            ////saveFileDialog1.InitialDirectory = @ "C:\";
+            //saveFileDialog1.Title = "Choose a File for Logging...";
+            //saveFileDialog1.CheckFileExists = false;
+            //saveFileDialog1.CheckPathExists = false;
+            //saveFileDialog1.DefaultExt = "txt";
+            //saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            //saveFileDialog1.FilterIndex = 2;
+            //saveFileDialog1.RestoreDirectory = true;
+            SaveFileDialog logfile = savefile();
+            if (logfile.ShowDialog() == DialogResult.OK)
             {
                 //textBox1.Text = saveFileDialog1.FileName;
 
-                CommandHistoryBox.AppendText("[ UI ] > Saving Sequence to: " + saveFileDialog1.FileName + Environment.NewLine);
-                using (StreamWriter sw = new StreamWriter(saveFileDialog1.FileName))
+                CommandHistoryBox.AppendText("[ UI ] > Saving Sequence to: " + logfile.FileName + Environment.NewLine);
+                using (StreamWriter sw = new StreamWriter(logfile.FileName))
                 {
                     initsequence();
 
