@@ -99,9 +99,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.b_AbortMotion = new System.Windows.Forms.Button();
+            this.b_savesequence = new System.Windows.Forms.Button();
             this.b_SequenceExecute = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.b_savesequence = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.baudBox)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trgDelay2)).BeginInit();
@@ -333,15 +333,9 @@
             // 
             // trgDelay2
             // 
-<<<<<<< Updated upstream
             this.trgDelay2.Location = new System.Drawing.Point(120, 81);
             this.trgDelay2.Maximum = new decimal(new int[] {
             1000,
-=======
-            this.t1Box.Location = new System.Drawing.Point(121, 110);
-            this.t1Box.Maximum = new decimal(new int[] {
-            10000,
->>>>>>> Stashed changes
             0,
             0,
             0});
@@ -390,7 +384,6 @@
             // 
             // label17
             // 
-<<<<<<< Updated upstream
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(14, 112);
             this.label17.Name = "label17";
@@ -403,11 +396,6 @@
             this.t1Box.Location = new System.Drawing.Point(121, 110);
             this.t1Box.Maximum = new decimal(new int[] {
             30,
-=======
-            this.trgDelay2.Location = new System.Drawing.Point(120, 81);
-            this.trgDelay2.Maximum = new decimal(new int[] {
-            10000,
->>>>>>> Stashed changes
             0,
             0,
             0});
@@ -530,7 +518,6 @@
             // 
             // nTrg
             // 
-<<<<<<< Updated upstream
             this.nTrg.Location = new System.Drawing.Point(30, 61);
             this.nTrg.Maximum = new decimal(new int[] {
             200,
@@ -550,17 +537,6 @@
             0,
             0,
             0});
-=======
-            this.absPosX.Location = new System.Drawing.Point(30, 141);
-            this.absPosX.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.absPosX.Name = "absPosX";
-            this.absPosX.Size = new System.Drawing.Size(53, 20);
-            this.absPosX.TabIndex = 2;
->>>>>>> Stashed changes
             // 
             // label27
             // 
@@ -573,7 +549,6 @@
             // 
             // b_SendTrgToggle
             // 
-<<<<<<< Updated upstream
             this.b_SendTrgToggle.AutoSize = true;
             this.b_SendTrgToggle.Location = new System.Drawing.Point(30, 38);
             this.b_SendTrgToggle.Name = "b_SendTrgToggle";
@@ -582,69 +557,24 @@
             this.b_SendTrgToggle.Text = "Send Trigger after Motion";
             this.b_SendTrgToggle.UseVisualStyleBackColor = true;
             this.b_SendTrgToggle.CheckedChanged += new System.EventHandler(this.b_SendTrgToggle_CheckedChanged);
-=======
-            this.relPosX.Location = new System.Drawing.Point(30, 192);
-            this.relPosX.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.relPosX.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.relPosX.Name = "relPosX";
-            this.relPosX.Size = new System.Drawing.Size(53, 20);
-            this.relPosX.TabIndex = 2;
->>>>>>> Stashed changes
             // 
             // label26
             // 
-<<<<<<< Updated upstream
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(87, 63);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(67, 13);
             this.label26.TabIndex = 4;
             this.label26.Text = "# of Triggers";
-=======
-            this.absPosY.Location = new System.Drawing.Point(109, 141);
-            this.absPosY.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.absPosY.Name = "absPosY";
-            this.absPosY.Size = new System.Drawing.Size(53, 20);
-            this.absPosY.TabIndex = 2;
->>>>>>> Stashed changes
             // 
             // label25
             // 
-<<<<<<< Updated upstream
             this.label25.AutoSize = true;
             this.label25.Location = new System.Drawing.Point(89, 194);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(14, 13);
             this.label25.TabIndex = 3;
             this.label25.Text = "Y";
-=======
-            this.relPosY.Location = new System.Drawing.Point(109, 192);
-            this.relPosY.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.relPosY.Minimum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            -2147483648});
-            this.relPosY.Name = "relPosY";
-            this.relPosY.Size = new System.Drawing.Size(53, 20);
-            this.relPosY.TabIndex = 2;
->>>>>>> Stashed changes
             // 
             // label22
             // 
@@ -861,6 +791,11 @@
             // seqResY
             // 
             this.seqResY.Location = new System.Drawing.Point(112, 107);
+            this.seqResY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqResY.Name = "seqResY";
             this.seqResY.Size = new System.Drawing.Size(53, 20);
             this.seqResY.TabIndex = 6;
@@ -868,6 +803,11 @@
             // seqSizeY
             // 
             this.seqSizeY.Location = new System.Drawing.Point(112, 66);
+            this.seqSizeY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqSizeY.Name = "seqSizeY";
             this.seqSizeY.Size = new System.Drawing.Size(53, 20);
             this.seqSizeY.TabIndex = 4;
@@ -875,6 +815,11 @@
             // seqCenterY
             // 
             this.seqCenterY.Location = new System.Drawing.Point(112, 25);
+            this.seqCenterY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqCenterY.Name = "seqCenterY";
             this.seqCenterY.Size = new System.Drawing.Size(53, 20);
             this.seqCenterY.TabIndex = 2;
@@ -882,6 +827,11 @@
             // seqResX
             // 
             this.seqResX.Location = new System.Drawing.Point(33, 107);
+            this.seqResX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqResX.Name = "seqResX";
             this.seqResX.Size = new System.Drawing.Size(53, 20);
             this.seqResX.TabIndex = 5;
@@ -889,6 +839,11 @@
             // seqSizeX
             // 
             this.seqSizeX.Location = new System.Drawing.Point(33, 66);
+            this.seqSizeX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqSizeX.Name = "seqSizeX";
             this.seqSizeX.Size = new System.Drawing.Size(53, 20);
             this.seqSizeX.TabIndex = 3;
@@ -896,6 +851,11 @@
             // seqCenterX
             // 
             this.seqCenterX.Location = new System.Drawing.Point(33, 25);
+            this.seqCenterX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.seqCenterX.Name = "seqCenterX";
             this.seqCenterX.Size = new System.Drawing.Size(53, 20);
             this.seqCenterX.TabIndex = 1;
@@ -947,6 +907,16 @@
             this.b_AbortMotion.UseVisualStyleBackColor = true;
             this.b_AbortMotion.Click += new System.EventHandler(this.b_AbortMotion_Click);
             // 
+            // b_savesequence
+            // 
+            this.b_savesequence.Location = new System.Drawing.Point(6, 196);
+            this.b_savesequence.Name = "b_savesequence";
+            this.b_savesequence.Size = new System.Drawing.Size(65, 42);
+            this.b_savesequence.TabIndex = 9;
+            this.b_savesequence.Text = "Save Sequence";
+            this.b_savesequence.UseVisualStyleBackColor = true;
+            this.b_savesequence.Click += new System.EventHandler(this.b_savesequence_Click);
+            // 
             // b_SequenceExecute
             // 
             this.b_SequenceExecute.Enabled = false;
@@ -968,16 +938,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(234, 270);
             this.tabControl1.TabIndex = 0;
-            // 
-            // b_savesequence
-            // 
-            this.b_savesequence.Location = new System.Drawing.Point(6, 196);
-            this.b_savesequence.Name = "b_savesequence";
-            this.b_savesequence.Size = new System.Drawing.Size(65, 42);
-            this.b_savesequence.TabIndex = 9;
-            this.b_savesequence.Text = "Save Sequence";
-            this.b_savesequence.UseVisualStyleBackColor = true;
-            this.b_savesequence.Click += new System.EventHandler(this.b_savesequence_Click);
             // 
             // Form1
             // 

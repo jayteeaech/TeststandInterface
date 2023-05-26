@@ -160,7 +160,7 @@ namespace Teststand_v4
                 }
                 else
                 {
-                    // Read the filestream to a string, report it to the main thread, and send its ASCII bytes to the network client
+                    // Read the filestream to a string, and report it to the main thread
                     try
                     {
                         string line = args.sPort.ReadTo("\r");  // returned string does not include [value] and [value] is removed from buffer
@@ -187,7 +187,7 @@ namespace Teststand_v4
             CommandHistoryBox.AppendText("[ RX ] > " + (string)e.UserState); // Write the backgroundWorker's status to the status box
 
             // send next point in sequence if receive "move done" (r1) response
-            if(((string)e.UserState == "r1") && sequenceActive)
+            if(((string)e.UserState == "r1\n") && sequenceActive)
             {
                 if (!xseq.end)
                 {
