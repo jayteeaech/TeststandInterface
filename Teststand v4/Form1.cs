@@ -321,6 +321,7 @@ namespace Teststand_v4
 
         private void b_AbortMotion_Click(object sender, EventArgs e)
         {
+            sequenceActive = false;
             msgSend("d01"); // Abort Motion
         }
 

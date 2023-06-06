@@ -498,7 +498,7 @@
             // 
             this.trgDelay.Location = new System.Drawing.Point(30, 87);
             this.trgDelay.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -533,7 +533,7 @@
             this.nTrg.Size = new System.Drawing.Size(51, 20);
             this.nTrg.TabIndex = 6;
             this.nTrg.Value = new decimal(new int[] {
-            1,
+            6,
             0,
             0,
             0});
@@ -606,6 +606,11 @@
             // relPosY
             // 
             this.relPosY.Location = new System.Drawing.Point(109, 192);
+            this.relPosY.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.relPosY.Name = "relPosY";
             this.relPosY.Size = new System.Drawing.Size(53, 20);
             this.relPosY.TabIndex = 2;
@@ -620,6 +625,11 @@
             // relPosX
             // 
             this.relPosX.Location = new System.Drawing.Point(30, 192);
+            this.relPosX.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.relPosX.Name = "relPosX";
             this.relPosX.Size = new System.Drawing.Size(53, 20);
             this.relPosX.TabIndex = 2;
