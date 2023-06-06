@@ -362,8 +362,8 @@ namespace Teststand_v4
 
         private void b_absPosGo_Click(object sender, EventArgs e)
         {
-            msgSend("m03x" + (int)((double)absPosX.Value * pulsPermm)); // set absolute position, send # of pulses
-            msgSend("m03y" + (int)((double)absPosY.Value * pulsPermm));
+            msgSend("m03x" + (long)((double)absPosX.Value * pulsPermm)); // set absolute position, send # of pulses
+            msgSend("m03y" + (long)((double)absPosY.Value * pulsPermm));
             msgSend("m02"); // execute move
         }
 
@@ -455,6 +455,13 @@ namespace Teststand_v4
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            msgSend("m03x" + (long)((double)seqCenterX.Value * pulsPermm)); // set absolute position, send # of pulses
+            msgSend("m03y" + (long)((double)seqCenterY.Value * pulsPermm));
+            msgSend("m02"); // execute move
         }
     }
 }

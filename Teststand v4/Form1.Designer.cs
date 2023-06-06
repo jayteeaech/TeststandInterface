@@ -606,8 +606,13 @@
             // relPosY
             // 
             this.relPosY.Location = new System.Drawing.Point(109, 192);
+            this.relPosY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.relPosY.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -618,6 +623,11 @@
             // absPosY
             // 
             this.absPosY.Location = new System.Drawing.Point(109, 141);
+            this.absPosY.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.absPosY.Name = "absPosY";
             this.absPosY.Size = new System.Drawing.Size(53, 20);
             this.absPosY.TabIndex = 2;
@@ -625,8 +635,13 @@
             // relPosX
             // 
             this.relPosX.Location = new System.Drawing.Point(30, 192);
+            this.relPosX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.relPosX.Minimum = new decimal(new int[] {
-            100,
+            1000,
             0,
             0,
             -2147483648});
@@ -646,6 +661,11 @@
             // absPosX
             // 
             this.absPosX.Location = new System.Drawing.Point(30, 141);
+            this.absPosX.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.absPosX.Name = "absPosX";
             this.absPosX.Size = new System.Drawing.Size(53, 20);
             this.absPosX.TabIndex = 2;
@@ -809,6 +829,11 @@
             this.seqResY.Name = "seqResY";
             this.seqResY.Size = new System.Drawing.Size(53, 20);
             this.seqResY.TabIndex = 6;
+            this.seqResY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // seqSizeY
             // 
@@ -821,6 +846,11 @@
             this.seqSizeY.Name = "seqSizeY";
             this.seqSizeY.Size = new System.Drawing.Size(53, 20);
             this.seqSizeY.TabIndex = 4;
+            this.seqSizeY.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // seqCenterY
             // 
@@ -845,6 +875,11 @@
             this.seqResX.Name = "seqResX";
             this.seqResX.Size = new System.Drawing.Size(53, 20);
             this.seqResX.TabIndex = 5;
+            this.seqResX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // seqSizeX
             // 
@@ -857,6 +892,11 @@
             this.seqSizeX.Name = "seqSizeX";
             this.seqSizeX.Size = new System.Drawing.Size(53, 20);
             this.seqSizeX.TabIndex = 3;
+            this.seqSizeX.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // seqCenterX
             // 
@@ -878,6 +918,7 @@
             this.button1.TabIndex = 8;
             this.button1.Text = "GO";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label11
             // 
