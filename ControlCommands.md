@@ -20,7 +20,8 @@ After motion (and trigger sequence, if enabled) is complete, Arduino sends "r1" 
 - m10 - enable auto trigger out
 - m11 - disable auto trigger out
 - m12:## - set # of triggers
-- m13:## - set #ms delay between triggers
+- m13:## - set #μs delay between triggers (default 5000 μs)
+- m14:## - set #ms delay between end of move and first trigger (Default 3000 ms)
 
 ## D-Codes
 diagnostic codes for testing or adjusting misc. timings
@@ -30,9 +31,12 @@ diagnostic codes for testing or adjusting misc. timings
 - d02 - manual trigger
 - d03 - continuous trigger (change m13 to choose interval)
 - d04 - stop continuous trigger
-- d05:## - set trigger #ms "high" time.
+- d05:## - set trigger #μs "high" time.
 - d06 - return loop status (L#)
 - d07 - return current position (p#,#).  Returns (p?,?) if location is unknown
+- d08 - return HLFBx status
+- d09 - return HLFBy status
+- d10 - overrides "home"
 
 # Response Codes
 Work in progress...
@@ -63,6 +67,10 @@ Arduino main loop is structured as a state machine.  Issue command d06 to reques
 **(6) Trigger Send** - Set by d02, d03 commands and State (5).  If pulse timer exceeds `trgDelay`, set trigger pin high, wait for `trgHiTm` ms, and set trigger pin low.  Continues to (0) when trigger sequence is complete.
 
 # Changelog
+v2.3 - 2023-06-06
+- added Delay between move and and trg to allow mechanical stage to settle
+- fixed bug where commanded position was initially saved as an int instead of a long
+
 v2.2 - 2022-06-27
 - added HLFB filtering to address false "home" readings during motion
 

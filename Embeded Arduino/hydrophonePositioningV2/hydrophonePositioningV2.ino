@@ -1,4 +1,4 @@
-#define ver "v2.2.2 - 2023-05-24"
+#define ver "v2.3.0 - 2023-06-06"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -19,6 +19,7 @@ long xPulsRemain = 0; // remaining pulses to send to x motor
 long yloc = 0;
 long ytarget = 0;
 long yPulsRemain = 0; // remaining pulses to send to y motor
+int mechdelay = 3000; //  [ms] Delay after move before trg to allow mechanical stage to settle
 int trgDelay = 5000; // [us] delay between trigger out pulses
 int trgHiTm = 50; // [us]  trigger "high" duration
 int ntrg = 6; // number of trigger out pulses
@@ -191,6 +192,7 @@ void loop() {
         digitalWrite(EnableX, LOW); // motor disable
         digitalWrite(EnableY, LOW);
         if (f_autotrg) { // check if auto trigger flag enabled
+          delay(mechdelay); // delay to allow mechanical hardware to settle
           loopstate = 6; // advance to TRG SEND
           trgremain = ntrg; // queue ntrg pulses to send
           tlastpuls = millis(); // reset timer to force trgDelay before sending first trigger (allow stage to settle)
@@ -281,7 +283,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
             }
           case 4: { // m04 - set relative x/y location target
               char ax = (char)Serial.read();
-              int loc = (int)Serial.parseInt(SKIP_NONE);
+              long loc = (long)Serial.parseInt(SKIP_NONE);
               switch (ax) {
                 case 'x':
                   xtarget += loc;
@@ -314,6 +316,11 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
               trgDelay = (int)Serial.parseInt(SKIP_NONE);
               break;
             }
+          case 14: { // set #ms delay between move done and trg to allow mechanical stage to settle
+              char delimit = (char)Serial.read();
+              mechdelay = (int)Serial.parseInt(SKIP_NONE);
+              break;
+          }
           default: {
               Serial.print(cmd);
               Serial.println(" Invalid M-Code");
