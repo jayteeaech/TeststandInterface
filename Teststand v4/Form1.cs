@@ -289,14 +289,14 @@ namespace Teststand_v4
             // Update x sequence object with new values
             xseq.min = (double)seqCenterX.Value - (double)seqSizeX.Value / 2;
             xseq.max = (double)seqCenterX.Value + (double)seqSizeX.Value / 2;
-            xseq.n = (int)seqSizeX.Value;
+            xseq.n = (int)seqResX.Value;
             xseq.reset();
             xseq.SetSequence();
 
             // Update y sequence object with new values
             yseq.min = (double)seqCenterY.Value - (double)seqSizeY.Value / 2;
             yseq.max = (double)seqCenterY.Value + (double)seqSizeY.Value / 2;
-            yseq.n = (int)seqSizeY.Value;
+            yseq.n = (int)seqResY.Value;
             yseq.reset();
             yseq.SetSequence();
 
