@@ -20,7 +20,7 @@ long yloc = 0;
 long ytarget = 0;
 long yPulsRemain = 0; // remaining pulses to send to y motor
 int mechdelay = 3000; //  [ms] Delay after move before trg to allow mechanical stage to settle
-int trgDelay = 5000; // [us] delay between trigger out pulses
+int trgDelay = 500; // [ms] delay between trigger out pulses
 int trgHiTm = 50; // [us]  trigger "high" duration
 int ntrg = 6; // number of trigger out pulses
 int trgremain = 0; // # trigger pulses remaining
@@ -192,7 +192,9 @@ void loop() {
         digitalWrite(EnableX, LOW); // motor disable
         digitalWrite(EnableY, LOW);
         if (f_autotrg) { // check if auto trigger flag enabled
+          Serial.println("waiting to settle...");
           delay(mechdelay); // delay to allow mechanical hardware to settle
+          Serial.println("Starting Trigger set...");
           loopstate = 6; // advance to TRG SEND
           trgremain = ntrg; // queue ntrg pulses to send
           tlastpuls = millis(); // reset timer to force trgDelay before sending first trigger (allow stage to settle)

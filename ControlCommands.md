@@ -20,7 +20,7 @@ After motion (and trigger sequence, if enabled) is complete, Arduino sends "r1" 
 - m10 - enable auto trigger out
 - m11 - disable auto trigger out
 - m12:## - set # of triggers
-- m13:## - set #μs delay between triggers (default 5000 μs)
+- m13:## - set #ms delay between triggers (default 500 ms)
 - m14:## - set #ms delay between end of move and first trigger (Default 3000 ms)
 
 ## D-Codes
