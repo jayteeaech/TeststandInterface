@@ -1,4 +1,4 @@
-#define ver "v2.3.0 - 2023-06-06"
+#define ver "v2.4.0 - 2023-06-26"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -14,9 +14,11 @@
 // Init Global Vars:
 int loopstate = 0; // loop state machine # - 0 is "waiting"
 long xloc = 0;     // Current x location, in pulses
+int  xdir = 1;     // commanded direction (1 for positive, -1 for negative)
 long xtarget = 0;  // Target x location, in pulses
 long xPulsRemain = 0; // remaining pulses to send to x motor
 long yloc = 0;
+int  ydir = 1;
 long ytarget = 0;
 long yPulsRemain = 0; // remaining pulses to send to y motor
 int mechdelay = 3000; //  [ms] Delay after move before trg to allow mechanical stage to settle
@@ -36,7 +38,6 @@ byte HLFBstatus = 0b11;
 bool f_autotrg = 0;
 bool f_LocKnown = 0;
 bool f_trgContinuous = 0;
-bool f_homing = 0;
 
 void setup() {
   // Setup Pin I/O:
@@ -81,35 +82,22 @@ void loop() {
   // State Machine
   switch (loopstate) {
     case 1: // HOMING INIT
-      f_LocKnown = 0;
+      // Clearpath motors will find home at first enable after power on
+//      f_LocKnown = 0;
       // cycle motor enable (clear possible errors)
       digitalWrite(EnableX, LOW);
       digitalWrite(EnableY, LOW);
       delay(100);
       digitalWrite(EnableX, HIGH);
       digitalWrite(EnableY, HIGH);
-      f_homing = 1; // set homing flag
-      // per clearpath manual, "manual hard stop homing sequence"
-      //  is just "issue a move toward the Physical Home ... long enough to
-      //  guarantee the load will hit the hard stop" (p.188)
-      // Therefore, set x/y directions to negative and pulseremain to something
-      //  large and advance to MOVESEND (4)
-      xtarget = 0; // used in MOVEWAIT (5) to set x/yloc
-      ytarget = 0;
-      digitalWrite(InputAX, LOW); // set X dir to negative
-      digitalWrite(InputAY, LOW); // set Y dir to negative
-      xPulsRemain = 629000; // max pulses for whole travel range (1000mm * 0.629rev/mm * 1000pulse/rev = 629000)
-      yPulsRemain = 629000;
-      tmovestart = micros();
-      loopstate = 4; // advance to MOVESEND state
+	  Serial.println("If motors do not move, restart motor power.");
+	  Serial.println("Motors will find home at first enable after power on.");
+	  xloc = 0;
+	  yloc = 0;
+	  f_LocKnown = 1;
+      loopstate = 5; // advance to MOVEWAIT state
       break;
-    //    case 2: // HOMING WAIT - DEPRICATED
-    //      // **if HLFBx true && HLFBy true
-    //      f_LocKnown = 1;
-    //      xloc = 0;
-    //      yloc = 0;
-    //      loopstate = 0; // return to WAITING
-    //      break;
+
     case 3: // MOVE INIT
       if (f_LocKnown) {
         digitalWrite(EnableX, HIGH); // motor enable
@@ -118,20 +106,24 @@ void loop() {
         // Calculate X move
         xPulsRemain = (long)((long)xtarget - (long)xloc); // may be negative.
         if (xPulsRemain < 0) {
+			xdir = -1;
           digitalWrite(InputAX, LOW); // set xdir to -
           xPulsRemain = abs(xPulsRemain);
         }
         else {
+			xdir = 1;
           digitalWrite(InputAX, HIGH); // set xdir to +
         }
         Serial.println(xPulsRemain);
         // Calculate Y move
         yPulsRemain = (long)((long)ytarget - (long)yloc); // may be negative.
         if (yPulsRemain < 0) {
+			ydir = -1;
           digitalWrite(InputAY, LOW); // set ydir to -
           yPulsRemain = abs(yPulsRemain);
         }
         else {
+			ydir = 1;
           digitalWrite(InputAY, HIGH); // set ydir to +
         }
         Serial.println(yPulsRemain);
@@ -152,43 +144,28 @@ void loop() {
         if (xPulsRemain > 0) {
           digitalWrite(InputBX, HIGH); // set pulse high
           xPulsRemain--;
+		  xloc += xdir; // add/subtract one depending on direction
         }
         if (yPulsRemain > 0) {
           digitalWrite(InputBY, HIGH);
           yPulsRemain--;
+		  yloc += ydir;
         }
         delayMicroseconds(pulsdelay); // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
         digitalWrite(InputBX, LOW); // set pulse low
         digitalWrite(InputBY, LOW);
         if ((xPulsRemain == 0) && (yPulsRemain == 0)) {
-          Serial.println("advance to L5");
           loopstate = 5; // advance to MOVE WAIT
         }
 
         tlastpuls = micros(); // pulse ended. update last pulse time
         
-      // check for ASG mid-move send
-      HLFBstatus = HLFBfilter(); // status is 0 when both HLFB are ASG
-      if ( HLFBstatus == 0) {
-        if (f_homing) {
-          Serial.println("r2"); // report "home"
-          f_homing = 0;
-          loopstate = 5; // complete "move done" tasks
-        }
-        else {
-          Serial.println("Unexpected obstruction");
-        }
-      }
       } // end timing check
       break;
     case 5: // MOVE WAIT
       // Check motor feedback, if both LOW, then move is done
       HLFBstatus = HLFBfilter(); // status is 0 when both HLFB report ASG
       if (HLFBstatus == 0) {
-        //if((bool)digitalRead(HLFBX)) {
-        f_LocKnown = 1;
-        xloc = xtarget;
-        yloc = ytarget;
         digitalWrite(EnableX, LOW); // motor disable
         digitalWrite(EnableY, LOW);
         if (f_autotrg) { // check if auto trigger flag enabled
@@ -338,9 +315,7 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
               break;
             }
           case 1: { // d01 - abort
-              loopstate = 0;
-              digitalWrite(EnableX, LOW); // disable motors
-              digitalWrite(EnableY, LOW);
+              loopstate = 5;  // stop sending pulses and wait for actuator to catch up
               break;
             }
           case 2: { // manual trigger
