@@ -3,6 +3,17 @@ Version 2.4, updated 2023-06-26
 
 commands are case sensitive.  Use lowercase letters.
 
+## Workflow
+1) Power on motor power supply
+2) Home axes
+3) Move to center of measurement area to check alignment
+4) Send triggers to set proper timing on oscilliscope
+5) Set delay settling delay and delay between triggers 
+6) move to first collection point
+7) Enable auto trigger
+8) Start data collection sequence
+
+
 ## M-Codes
 Define motion actions.  Position targets are given in # of pulses unless otherwise specified.  Current hardware (as of 2022-03-03) uses motors set to 1000 pulses / revolution and 3/8"-16 leadscrews.  This combination results in 629.921 Pulses / mm.
 
