@@ -25,3 +25,14 @@ C:\Users\Joe\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststan
 C:\Users\Joe\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.GenerateResource.cache
 C:\Users\Joe\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.exe
 C:\Users\Joe\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.pdb
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.AssemblyReference.cache
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.SuggestedBindingRedirects.cache
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand_v4.Form1.resources
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand_v4.Properties.Resources.resources
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.GenerateResource.cache
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\Teststand v4.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.exe
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\obj\Debug\TeststandInterface.pdb
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.exe.config
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.exe
+C:\Users\admin\Documents\GitHub\TeststandInterface\Teststand v4\bin\Debug\TeststandInterface.pdb

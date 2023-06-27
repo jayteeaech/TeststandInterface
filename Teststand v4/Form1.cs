@@ -18,6 +18,8 @@ namespace Teststand_v4
         SerialPort sPort = new SerialPort();
         public readonly double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
         public bool sequenceActive = false;
+        public int jogmultiplier = 1;
+        public bool listenForLocation = false;
 
         Sequence xseq = new Sequence();
         Sequence yseq = new Sequence();
@@ -190,6 +192,17 @@ namespace Teststand_v4
             // send next point in sequence if receive "move done" (r1) response
             if(msg.EndsWith("r1\r\n") && sequenceActive)
             {
+                int ProgressOverallCount;
+                if (xseq.dir)
+                {
+                    ProgressOverallCount = (yseq.n * (yseq.idx - 1)) + xseq.idx;
+                }
+                else
+                {
+                    ProgressOverallCount = (yseq.n * (yseq.idx - 1)) + (xseq.n - xseq.idx);
+                }
+                seqProgressBar.Value = ProgressOverallCount / (yseq.n * xseq.n);
+
                 if (!xseq.end)
                 {
                     msgSend("m03x" + (int)(xseq.GetNextPoint() * pulsPermm)); // set absolute position, send # of pulses
@@ -205,6 +218,14 @@ namespace Teststand_v4
                     msgSend("m03y" + (int)(yseq.GetNextPoint() * pulsPermm));
                     msgSend("m02"); // execute move
                 }
+            }
+            if(msg.StartsWith("p") && listenForLocation)
+            {
+                listenForLocation = false;
+                char[] delimiterchars = { ',', 'p' };
+                string[] split = msg.Split(delimiterchars);
+                try { seqCenterX.Value = Int32.Parse(split[1]); } catch { CommandHistoryBox.AppendText("[ UI ] > Unable to Parse " + split[1]); }
+                try { seqCenterY.Value = Int32.Parse(split[2]); } catch { CommandHistoryBox.AppendText("[ UI ] > Unable to Parse " + split[2]); }
             }
         }
 
@@ -275,14 +296,13 @@ namespace Teststand_v4
             }
         }
 
-        //private void refreshMotionDisplays()
-        //{
-        //    float motion = (float)0.5 * ((float)nimagesBox.Value - 1) * (float)tdecBox.Value;
-        //    float startpoint = (float)0.5 * (float)startpointBox.Value;
-        //    float res = (float)0.5 * (float)tdecBox.Value;
-        //    totalmotionBox.Text = startpoint.ToString() + " + " + motion.ToString();
-        //    imageresolutionBox.Text = res.ToString();
-        //}
+        private void refreshSequenceDisplays(object sender, EventArgs e)
+        {
+            float deltax = (float)seqSizeX.Value / ((float)seqResX.Value - 1);
+            float detlay = (float)seqSizeY.Value / ((float)seqResY.Value - 1);
+            seqResTextX.Text = "Δ " + String.Format("{0:0.00}", deltax) + "mm";
+            seqResTextY.Text = "Δ " + String.Format("{0:0.00}", detlay) + "mm";
+        }
 
         private void initsequence()
         {
@@ -343,7 +363,7 @@ namespace Teststand_v4
 
         private void label15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("**DEV VERSION**\nWritten by Joe Howard, 2022\njoethoward@gmail.com");
+            MessageBox.Show("Written by Joe Howard, 2023\nhttps://github.com/jayteeaech/TeststandInterface\njoethoward@gmail.com");
         }
 
         private void b_SendTrgToggle_CheckedChanged(object sender, EventArgs e)
@@ -367,10 +387,10 @@ namespace Teststand_v4
             msgSend("m02"); // execute move
         }
 
-        private void b_relPosGo_Click(object sender, EventArgs e)
+        private void relPosGo(int relxmove, int relymove)
         {
-            msgSend("m04x" + (int)((double)relPosX.Value * pulsPermm)); // set relative position, send # of pulses
-            msgSend("m04y" + (int)((double)relPosY.Value * pulsPermm));
+            msgSend("m04x" + (int)((double)relxmove * pulsPermm)); // set relative position, send # of pulses
+            msgSend("m04y" + (int)((double)relymove * pulsPermm));
             msgSend("m02"); // execute move
         }
 
@@ -462,6 +482,44 @@ namespace Teststand_v4
             msgSend("m03x" + (long)((double)seqCenterX.Value * pulsPermm)); // set absolute position, send # of pulses
             msgSend("m03y" + (long)((double)seqCenterY.Value * pulsPermm));
             msgSend("m02"); // execute move
+        }
+
+        private void updatejogmultiplier(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked) { jogmultiplier = 1; }
+            if (radioButton2.Checked) { jogmultiplier = 10; }
+            if (radioButton3.Checked) { jogmultiplier = 100; }
+        }
+
+        private void jogYpos(object sender, EventArgs e)
+        {
+            relPosGo(0, jogmultiplier);
+        }
+        private void jogYneg(object sender, EventArgs e)
+        {
+            relPosGo(0, -jogmultiplier);
+        }
+        private void jogXpos(object sender, EventArgs e)
+        {
+            relPosGo(jogmultiplier,0);
+        }
+        private void jogXneg(object sender, EventArgs e)
+        {
+            relPosGo(-jogmultiplier,0);
+        }
+
+        private void keyjog(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up)    {  jogYpos(sender, e);  }
+            if (e.KeyCode == Keys.Down)  {  jogYneg(sender, e);  }
+            if (e.KeyCode == Keys.Left)  {  jogXneg(sender, e);  }
+            if (e.KeyCode == Keys.Right) {  jogXpos(sender, e);  }
+        }
+
+        private void setSeqCenter_Click(object sender, EventArgs e)
+        {
+            msgSend("d07");
+            listenForLocation = true; // Set flag for ProgressChanged to listen for 
         }
     }
 }
