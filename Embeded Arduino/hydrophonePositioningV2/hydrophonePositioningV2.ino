@@ -1,4 +1,4 @@
-#define ver "v2.4.0 - 2023-06-26"
+#define ver "v2.5.0 - 2023-07-30"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -9,6 +9,7 @@
 #define InputBX 8 // ClearPath Input B; +InputB = BLK wire; -InputB = YEL wire
 #define HLFBX 9 // ClearPath HLFB Output; +HLFB = GRN wire; -HLFB = RED wire
 #define xducerTrg 10 // Signal to transducer box
+#define trgIn 11 // BNC input for Oscilliscope "ready" signal
 #define LEDpin 13 // Arduino on-board LED
 
 // Init Global Vars:
@@ -52,7 +53,7 @@ void setup() {
   pinMode(InputBY, OUTPUT);
   pinMode(HLFBY, INPUT_PULLUP);
   pinMode(xducerTrg, OUTPUT);
-  //pinMode(Ducerback,INPUT);
+  pinMode(trgIn,INPUT);
   digitalWrite(xducerTrg, LOW);
 
   // init motor communication pins
@@ -128,7 +129,7 @@ void loop() {
         }
         Serial.println(yPulsRemain);
 
-        f_LocKnown = 0;
+        //f_LocKnown = 0;
         tmovestart = micros();
         loopstate = 4; // advance to MOVE SEND
         // no break
@@ -185,7 +186,8 @@ void loop() {
     case 6: // TRG SEND
       if ((trgremain > 0) || f_trgContinuous) {
         tcurrent = millis();
-        if ((unsigned long)(tcurrent - tlastpuls) >= trgDelay) {
+        if ( digitalRead(trgIn) ) {
+          delayMicroseconds(100); // delay after getting oscilliscope's ready signal
           trgremain--;
           digitalWrite(xducerTrg, HIGH); // set trg high
           delayMicroseconds(trgHiTm);  // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either

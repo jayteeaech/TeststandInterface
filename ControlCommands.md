@@ -1,5 +1,5 @@
 # Commands for xy positioning stage
-Version 2.4, updated 2023-06-26
+Version 2.5, updated 2023-07-30
 
 commands are case sensitive.  Use lowercase letters.
 
@@ -78,6 +78,9 @@ Arduino main loop is structured as a state machine.  Issue command d06 to reques
 **(6) Trigger Send** - Set by d02, d03 commands and State (5).  If pulse timer exceeds `trgDelay`, set trigger pin high, wait for `trgHiTm` ms, and set trigger pin low.  Continues to (0) when trigger sequence is complete.
 
 # Changelog
+v2.5 - 2023-07-30
+- Auto Trigger (m10) now waits for for Oscilliscope's Ready signal on trigger in port before sending next trigger
+
 v2.4 - 2023-06-08
 - major change with Homing behavior - ClearPath motors now home at first enable after power-on to address issues during movement
 
