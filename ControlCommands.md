@@ -1,5 +1,5 @@
 # Commands for xy positioning stage
-Version 2.5, updated 2023-07-30
+Version 2.6, updated 2023-08-30
 
 commands are case sensitive.  Use lowercase letters.
 
@@ -15,7 +15,7 @@ commands are case sensitive.  Use lowercase letters.
 
 
 ## M-Codes
-Define motion actions.  Position targets are given in # of pulses unless otherwise specified.  Current hardware (as of 2022-03-03) uses motors set to 1000 pulses / revolution and 3/8"-16 leadscrews.  This combination results in 629.921 Pulses / mm.
+Define motion actions.  Position targets are given in # of pulses unless otherwise specified.  Current hardware (as of 2023-08-30) uses motors set to 250 pulses / revolution and 3/8"-16 leadscrews.  This combination results in 157.480 Pulses / mm.
 
 High Level Feed Back (HLFB) is LOW when All Systems Go (ASG), and HIGH when motors are disabled or in motion.
 
@@ -31,7 +31,7 @@ After motion (and trigger sequence, if enabled) is complete, Arduino sends "r1" 
 - m10 - enable auto trigger out
 - m11 - disable auto trigger out
 - m12:## - set # of triggers
-- m13:## - set #ms delay between triggers (default 500 ms)
+- m13:## - set #ms delay between "Ready" signal on Trg In and sending transmit trigger on Trg In (default 100 ms)
 - m14:## - set #ms delay between end of move and first trigger (Default 3000 ms)
 
 ## D-Codes
@@ -48,6 +48,8 @@ diagnostic codes for testing or adjusting misc. timings
 - d08 - return HLFBx status
 - d09 - return HLFBy status
 - d10 - overrides "home"
+- d11 - enable extra serial messages (good for diagnostics)
+- d12 - disable extra serial messages
 
 # Response Codes
 Work in progress...
@@ -58,7 +60,6 @@ Work in progress...
 Arduino main loop is structured as a state machine.  Issue command d06 to request loop status.
 - 0 - waiting
 - 1 - homing init
-- 2 - move abort
 - 3 - move init
 - 4 - move send
 - 5 - move wait
@@ -78,6 +79,9 @@ Arduino main loop is structured as a state machine.  Issue command d06 to reques
 **(6) Trigger Send** - Set by d02, d03 commands and State (5).  If pulse timer exceeds `trgDelay`, set trigger pin high, wait for `trgHiTm` ms, and set trigger pin low.  Continues to (0) when trigger sequence is complete.
 
 # Changelog
+v2.6 - 2023-08-30
+- reduced motor Pulse Per Revolution setting from 1000 to 250 to address missing pulses
+
 v2.5 - 2023-07-30
 - Auto Trigger (m10) now waits for for Oscilliscope's Ready signal on trigger in port before sending next trigger
 

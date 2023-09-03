@@ -16,9 +16,9 @@ namespace Teststand_v4
     {
 
         SerialPort sPort = new SerialPort();
-        public readonly double pulsPermm = 629.921; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
+        public readonly double pulsPermm = 157.480; // # pulses per mm given motor 1000 pulse/rev and leadscrew pitch 3/8-16
         public bool sequenceActive = false;
-        public int jogmultiplier = 1;
+       // public double jogmultiplier = 1;
         public bool listenForLocation = false;
 
         Sequence xseq = new Sequence();
@@ -201,7 +201,7 @@ namespace Teststand_v4
                 {
                     ProgressOverallCount = (yseq.n * (yseq.idx - 1)) + (xseq.n - xseq.idx);
                 }
-                seqProgressBar.Value = ProgressOverallCount / (yseq.n * xseq.n);
+                seqProgressBar.Value = (int)( (float)ProgressOverallCount / (float)(yseq.n * xseq.n) );
 
                 if (!xseq.end)
                 {
@@ -277,8 +277,16 @@ namespace Teststand_v4
 
         private void msgSend(string msg)
         {
-            CommandHistoryBox.AppendText("[ TX ] > " + msg + Environment.NewLine);
-            sPort.Write(msg);
+            //try
+            //{
+                sPort.Write(msg);
+                CommandHistoryBox.AppendText("[ TX ] > " + msg + Environment.NewLine);
+            //}
+            //catch (Exception)
+            //{
+            //    CommandHistoryBox.AppendText("[ UI ] > Error: Serial Not Connected.");
+            //    //throw;
+            //}
         }
 
         private void comDisconnect_Click(object sender, EventArgs e)
@@ -373,6 +381,7 @@ namespace Teststand_v4
                 msgSend("m10"); // enable trg out
                 msgSend("m12:" + String.Format("{0:000}", (int)nTrg.Value));  // set # trg
                 msgSend("m13:" + String.Format("{0:0000}", (int)trgDelay.Value)); // set #ms delay between trg
+                msgSend("m14:" + String.Format("{0:0000}", (int)mechdelaybox.Value));
             }
             else
             {
@@ -387,7 +396,7 @@ namespace Teststand_v4
             msgSend("m02"); // execute move
         }
 
-        private void relPosGo(int relxmove, int relymove)
+        private void relPosGo(double relxmove, double relymove)
         {
             msgSend("m04x" + (int)((double)relxmove * pulsPermm)); // set relative position, send # of pulses
             msgSend("m04y" + (int)((double)relymove * pulsPermm));
@@ -484,42 +493,74 @@ namespace Teststand_v4
             msgSend("m02"); // execute move
         }
 
-        private void updatejogmultiplier(object sender, EventArgs e)
+        private double jogmultiplier()
         {
-            if (radioButton1.Checked) { jogmultiplier = 1; }
-            if (radioButton2.Checked) { jogmultiplier = 10; }
-            if (radioButton3.Checked) { jogmultiplier = 100; }
+            if (radiobutton1mm.Checked) { return 1.0; }
+            if (radioButton10mm.Checked) { return 10.0; }
+            if (radioButton100mm.Checked) { return 100.0; }
+            if (radioButtonsubmm.Checked) { return 0.1; }
+            return 0;
         }
 
         private void jogYpos(object sender, EventArgs e)
         {
-            relPosGo(0, jogmultiplier);
+            relPosGo(0, jogmultiplier());
         }
         private void jogYneg(object sender, EventArgs e)
         {
-            relPosGo(0, -jogmultiplier);
+            relPosGo(0, -jogmultiplier());
         }
         private void jogXpos(object sender, EventArgs e)
         {
-            relPosGo(jogmultiplier,0);
+            relPosGo(jogmultiplier(),0);
         }
         private void jogXneg(object sender, EventArgs e)
         {
-            relPosGo(-jogmultiplier,0);
+            relPosGo(-jogmultiplier(), 0);
         }
 
         private void keyjog(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Up)    {  jogYpos(sender, e);  }
-            if (e.KeyCode == Keys.Down)  {  jogYneg(sender, e);  }
-            if (e.KeyCode == Keys.Left)  {  jogXneg(sender, e);  }
-            if (e.KeyCode == Keys.Right) {  jogXpos(sender, e);  }
+            if (e.KeyCode == Keys.W)    {  jogYpos(sender, e);  }
+            if (e.KeyCode == Keys.S)  {  jogYneg(sender, e);  }
+            if (e.KeyCode == Keys.A)  {  jogXneg(sender, e);  }
+            if (e.KeyCode == Keys.D) {  jogXpos(sender, e);  }
         }
 
         private void setSeqCenter_Click(object sender, EventArgs e)
         {
             msgSend("d07");
             listenForLocation = true; // Set flag for ProgressChanged to listen for 
+        }
+
+        private void b_HLFBx_Click(object sender, EventArgs e)
+        {
+            msgSend("d08");
+        }
+
+        private void b_HLFBy_Click(object sender, EventArgs e)
+        {
+            msgSend("d09");
+        }
+
+        private void b_homeOverride_Click(object sender, EventArgs e)
+        {
+            msgSend("d10");
+        }
+
+        private void b_verboseEnable_Click(object sender, EventArgs e)
+        {
+            msgSend("d11");
+        }
+
+        private void b_verboseDisable_Click(object sender, EventArgs e)
+        {
+            msgSend("d12");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/jayteeaech/TeststandInterface");
         }
     }
 }

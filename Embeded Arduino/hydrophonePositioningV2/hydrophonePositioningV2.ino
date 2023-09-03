@@ -1,4 +1,4 @@
-#define ver "v2.5.0 - 2023-07-30"
+#define ver "v2.6.0 - 2023-08-30"
 // Init pin defs
 #define EnableY 2 // ClearPath ~enable input; +enable = BLU wire; -enable = ORN wire
 #define InputAY 3 // ClearPath Input A; +InputA = WHT wire; -InputA is BRN wire
@@ -22,15 +22,15 @@ long yloc = 0;
 int  ydir = 1;
 long ytarget = 0;
 long yPulsRemain = 0; // remaining pulses to send to y motor
-int mechdelay = 3000; //  [ms] Delay after move before trg to allow mechanical stage to settle
-int trgDelay = 500; // [ms] delay between trigger out pulses
+int mechdelay = 1500; //  [ms] Delay after move before trg to allow mechanical stage to settle
+int trgDelay = 100; // [ms] delay between trigger out pulses (depricated by waiting for trgin from o-scope)
 int trgHiTm = 50; // [us]  trigger "high" duration
 int ntrg = 6; // number of trigger out pulses
 int trgremain = 0; // # trigger pulses remaining
 unsigned long tlastpuls = 0; // [ms] time of last pulse, used for timing
 unsigned long tcurrent = 0; // container for "current" time, used for timing
 unsigned long tmovestart = 0;
-int pulsdelay = 20;  // [us] 1/2 the pulse period
+int pulsdelay = 100;  // [us] 1/2 the pulse period
 int HLFBxAccum; // accumulator for HLFB bits.  Change data type to increase averaging time
 int HLFByAccum;
 byte HLFBstatus = 0b11;
@@ -39,6 +39,7 @@ byte HLFBstatus = 0b11;
 bool f_autotrg = 0;
 bool f_LocKnown = 0;
 bool f_trgContinuous = 0;
+bool f_verbose = 0;
 
 void setup() {
   // Setup Pin I/O:
@@ -103,7 +104,7 @@ void loop() {
       if (f_LocKnown) {
         digitalWrite(EnableX, HIGH); // motor enable
         digitalWrite(EnableY, HIGH);
-        delay(1);
+        delay(100);
         // Calculate X move
         xPulsRemain = (long)((long)xtarget - (long)xloc); // may be negative.
         if (xPulsRemain < 0) {
@@ -115,7 +116,6 @@ void loop() {
 			xdir = 1;
           digitalWrite(InputAX, HIGH); // set xdir to +
         }
-        Serial.println(xPulsRemain);
         // Calculate Y move
         yPulsRemain = (long)((long)ytarget - (long)yloc); // may be negative.
         if (yPulsRemain < 0) {
@@ -127,9 +127,13 @@ void loop() {
 			ydir = 1;
           digitalWrite(InputAY, HIGH); // set ydir to +
         }
-        Serial.println(yPulsRemain);
-
-        //f_LocKnown = 0;
+        if (f_verbose) {
+          Serial.print("Move X:");
+          Serial.println(xPulsRemain);
+          Serial.print("Move Y:");
+          Serial.println(yPulsRemain);
+        }
+        
         tmovestart = micros();
         loopstate = 4; // advance to MOVE SEND
         // no break
@@ -178,8 +182,14 @@ void loop() {
           tlastpuls = millis(); // reset timer to force trgDelay before sending first trigger (allow stage to settle)
         }
         else {
-          loopstate = 0; // return to WAITING
-          Serial.println("r1"); // report motion complete
+          if (f_trgContinuous) {
+            loopstate = 6;
+          }
+          else {
+            loopstate = 0; // return to WAITING
+            Serial.println("r1"); // report motion complete
+          }
+          
         }
       }
       break;
@@ -187,7 +197,7 @@ void loop() {
       if ((trgremain > 0) || f_trgContinuous) {
         tcurrent = millis();
         if ( digitalRead(trgIn) ) {
-          delayMicroseconds(100); // delay after getting oscilliscope's ready signal
+          delayMicroseconds(trgDelay); // delay after getting oscilliscope's ready signal
           trgremain--;
           digitalWrite(xducerTrg, HIGH); // set trg high
           delayMicroseconds(trgHiTm);  // loop only responsive to serial commands during "low" portion of pulses.  Not ideal, but not mission critical either
@@ -267,10 +277,12 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
               long loc = (long)Serial.parseInt(SKIP_NONE);
               switch (ax) {
                 case 'x':
-                  xtarget += loc;
+                  xtarget += (long)loc;
+                 // Serial.println(loc);
                   break;
                 case 'y':
-                  ytarget += loc;
+                  ytarget += (long)loc;
+                 // Serial.println(loc);
                   break;
                 default:
                   Serial.print(ax);
@@ -371,6 +383,14 @@ void serialEvent() { // executes @ end of every loop() if serial data waiting
               yloc = 0;
               ytarget = 0;
               f_LocKnown = 1;
+              break;
+            }
+          case 11: { // enable verbose messages
+              f_verbose = 1;
+              break;
+            }
+          case 12: { // disable verbose messages
+              f_verbose = 0;
               break;
             }
           default: {
